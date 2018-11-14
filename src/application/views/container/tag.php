@@ -6,15 +6,17 @@ $baseUrl = $systemConfig['blog']['baseUrl'];
 // Paging
 $paging = $container['paging'];
 $prevButton = isset($paging['prevUrl'])
-    ? Helper::linkTo("{$baseUrl}{$paging['prevUrl']}", "<< {$paging['prevTitle']}") : '';
+    ? Helper::linkTo("{$baseUrl}{$paging['prevUrl']}", $paging['prevTitle']) : '';
 $nextButton = isset($paging['nextUrl'])
-    ? Helper::linkTo("{$baseUrl}{$paging['nextUrl']}", "{$paging['nextTitle']} >>") : '';
+    ? Helper::linkTo("{$baseUrl}{$paging['nextUrl']}", $paging['nextTitle']) : '';
 $indicator = "{$paging['currentIndex']} / {$paging['totalIndex']}";
 ?>
-<div id="container_tag">
-    <article class="post_block">
-        <h1 class="title"><?=$container['title']?></h1>
-        <div class="list">
+<div class="nx-tag">
+    <article class="nx-block">
+        <div class="nx-title">
+            <h1><?=$container['title']?></h1>
+        </div>
+        <div class="nx-list">
             <?php foreach ($container['list'] as $article): ?>
             <section>
                 <h1><?=Helper::linkTo("{$baseUrl}article/{$article['url']}", $article['title'])?></h1>
@@ -37,9 +39,9 @@ $indicator = "{$paging['currentIndex']} / {$paging['totalIndex']}";
         </div>
     </article>
 
-    <div id="paging">
-        <span class="new"><?=$prevButton?></span>
-        <span class="old"><?=$nextButton?></span>
-        <span class="count"><?=$indicator?></span>
+    <div class="nx-paginator">
+        <span class="nx-prev"><?=$prevButton?></span>
+        <span class="nx-next"><?=$nextButton?></span>
+        <span class="nx-count"><?=$indicator?></span>
     </div>
 </div>

@@ -1,4 +1,5 @@
 <?php
+$postfix = time();
 $lang = $systemConfig['blog']['lang'];
 $slogan = $systemConfig['blog']['slogan'];
 $footer = $systemConfig['blog']['footer'];
@@ -33,10 +34,10 @@ $description = (!isset($container['description']) || '' === $container['descript
     <link rel="author" href="//plus.google.com/+ScarWu">
     <link rel="image_src" href="//<?="{$domainName}{$baseUrl}"?>images/icon.jpg">
     <link rel="shortcut icon" href="//<?="{$domainName}{$baseUrl}"?>favicon.ico">
-    <link rel="stylesheet" href="<?=$baseUrl?>assets/styles/theme.min.css">
+    <link rel="stylesheet" href="<?=$baseUrl?>assets/styles/theme.min.css?<?=$postfix?>">
 
-    <script src="<?=$baseUrl?>assets/scripts/vendor/modernizr.min.js"></script>
-    <script src="<?=$baseUrl?>assets/scripts/theme.min.js" async></script>
+    <script src="<?=$baseUrl?>assets/scripts/vendor/modernizr.min.js?<?=$postfix?>"></script>
+    <script src="<?=$baseUrl?>assets/scripts/theme.min.js?<?=$postfix?>" async></script>
 
     <script>
         function asyncLoad(src) {
@@ -57,52 +58,6 @@ $description = (!isset($container['description']) || '' === $container['descript
         ga('send', 'pageview');
     </script>
     <?php endif; ?>
-</head>
-<body>
-    <hgroup id="header">
-        <h1><a href="/">ScarShow</a></h1>
-        <h2><?=$slogan?></h2>
-    </hgroup>
-
-    <nav id="nav">
-        <span class="left">
-            <a href="<?=$baseUrl?>works/">Works</a>
-        </span>
-        <span class="home">
-            <a href="<?=$baseUrl?>">Home</a>
-            <span class="arrow"></span>
-        </span>
-        <span class="right">
-            <a href="<?=$baseUrl?>atom.xml">RSS</a>
-        </span>
-    </nav>
-
-    <div id="main">
-        <div id="container">
-            <?=$this->loadContent()?>
-        </div>
-        <div id="side">
-            <div id="side_search">
-                <i class="fa fa-search"></i>
-                <form action="//www.google.com/search?q=as" target="_blank" method="get">
-                    <input type="hidden" name="q" value="site:<?=$domainName?>">
-                    <input type="text" name="q" placeholder="Search">
-                    <input type="submit">
-                </form>
-            </div>
-            <?php foreach ($themeConfig['views']['side'] as $name): ?>
-            <?=$this->loadPartial("side/{$name}")?>
-            <?php endforeach; ?>
-        </div>
-    </div>
-
-    <footer id="footer">
-        <span><?=$footer?></span>
-        <p>Powered by Pointless</p>
-    </footer>
-
-    <div id="fb-root"></div>
-
     <?php if(null !== $disqusShortname): ?>
     <script>
         var disqusShortname = '<?=$disqusShortname?>';
@@ -123,5 +78,49 @@ $description = (!isset($container['description']) || '' === $container['descript
             asyncLoad('//platform.twitter.com/widgets.js');
         }
     </script>
+</head>
+<body>
+    <header id="nx-header">
+        <div class="nx-limiter">
+            <h1><a href="/">ScarShow</a></h1>
+            <h2><?=$slogan?></h2>
+
+            <nav class="nx-nav">
+                <div class="nx-item">
+                    <a href="<?=$baseUrl?>works/">Works</a>
+                </div>
+
+                <form class="nx-item nx-search" action="//www.google.com/search?q=as" target="_blank" method="get">
+                    <input type="hidden" name="q" value="site:<?=$domainName?>">
+                    <input type="text" name="q" placeholder="Search">
+                    <input type="submit">
+                </form>
+            </nav>
+        </div>
+    </header>
+
+    <div id="nx-body">
+        <div class="nx-limiter">
+            <div class="nx-container">
+                <?=$this->loadContent()?>
+            </div>
+
+            <div class="nx-side row">
+                <?php foreach ($themeConfig['views']['side'] as $name): ?>
+                <?=$this->loadPartial("side/{$name}")?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+
+    <footer id="nx-footer">
+        <div class="nx-limiter">
+            <span><?=$footer?></span>
+            <br />
+            <span>Powered by Pointless</span>
+        </div>
+    </footer>
+
+    <div id="fb-root"></div>
 </body>
 </html>

@@ -3,15 +3,15 @@ use Oni\Web\Helper;
 
 $baseUrl = $systemConfig['blog']['baseUrl'];
 ?>
-<div id="side_archive">
-    <div class="title">
-        <?=Helper::linkTo("{$baseUrl}archive/", 'Archive')?>
+<div class="nx-archive col-4">
+    <div class="nx-title">
+        <h2><?=Helper::linkTo("{$baseUrl}archive/", 'Archive')?></h2>
     </div>
-    <div class="content">
+    <div class="nx-content">
         <?php foreach ($sideList['archive'] as $key => $postList): ?>
-        <span class="item">
+        <span class="nx-item">
             <?php $count = count($postList); ?>
-            <?=Helper::linkTo("{$baseUrl}archive/{$key}/", "{$key}({$count})")?>
+            <?=Helper::linkTo("{$baseUrl}archive/{$key}/", $key)?>
         </span>
         <?php endforeach; ?>
     </div>
