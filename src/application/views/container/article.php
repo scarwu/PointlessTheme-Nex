@@ -20,49 +20,21 @@ $indicator = "{$paging['currentIndex']} / {$paging['totalIndex']}";
         </div>
         <div class="nx-content"><?=$container['content']?></div>
         <div class="nx-info">
-            <div class="nx-archive">
-                <i class="fa fa-calendar"></i>
+            <span class="nx-archive">
                 <?=Helper::linkTo("{$baseUrl}archive/{$container['year']}/", $container['date'])?>
-            </div>
-            <div class="nx-category">
-                <i class="fa fa-folder"></i>
+            </span>
+            &nbsp;/&nbsp;
+            <span class="nx-category">
                 <?=Helper::linkTo("{$baseUrl}category/{$container['category']}/", $container['category'])?>
-            </div>
-            <?php foreach ($container['tags'] as $tag): ?>
-            <div class="nx-tag">
-                <i class="fa fa-tag"></i>
-                <?=Helper::linkTo("{$baseUrl}tag/{$tag}/", $tag)?>
-            </div>
-            <?php endforeach; ?>
-            <?php if (null !== $disqusShortname && $container['withMessage']): ?>
-            <div class="nx-disqus_comments disqus_comments">
-                <i class="fa fa-comment"></i>
-                <a href="<?=Helper::linkEncode("{$baseUrl}{$container['url']}")?>#disqus_thread">0 Comment</a>
-            </div>
+            </span>
+            <?php if (0 < count($container['tags'])):?>
+            &nbsp;/&nbsp;
+            <span class="nx-tag">
+                <?=join(' ', array_map(function ($tag) use ($baseUrl) {
+                    return Helper::linkTo("{$baseUrl}tag/{$tag}/", $tag);
+                }, $container['tags']))?>
+            </span>
             <?php endif; ?>
-            <!-- <hr /> -->
-            <!-- <div class="nx-social_tool">
-                <div class="nx-twitter">
-                    <a class="twitter-share-button"
-                        data-url="//<?=Helper::linkEncode("{$domainName}{$baseUrl}{$container['url']}")?>"
-                        data-text="<?="{$container['title']} | {$systemConfig['blog']['name']}"?>"
-                        data-lang="en"
-                        data-via="xneriscool"></a>
-                </div>
-                <div class="nx-facebook">
-                    <div class="fb-like"
-                        data-href="//<?=Helper::linkEncode("{$domainName}{$baseUrl}{$container['url']}")?>"
-                        data-layout="button_count"
-                        data-action="like"
-                        data-show-faces="true"
-                        data-share="false"></div>
-                </div>
-                <div class="nx-google">
-                    <div class="g-plusone"
-                        data-href="//<?=Helper::linkEncode("{$domainName}{$baseUrl}{$container['url']}")?>"
-                        data-size="medium"></div>
-                </div>
-            </div> -->
         </div>
     </article>
 

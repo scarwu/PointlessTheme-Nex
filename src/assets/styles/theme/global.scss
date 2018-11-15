@@ -174,13 +174,11 @@
         width: 10px;
         height: 10px;
         background: rgba(0, 0, 0, 0.1);
-
         @include border-radius(5px);
     }
 
     &::-webkit-scrollbar-thumb {
         background: rgba(0, 0, 0, 0.1);
-
         @include border-radius(5px);
     }
 }
@@ -230,7 +228,7 @@ html {
 
 body {
     overflow-y: scroll;
-    background: #eee;
+    // background: #eee;
     font-family: "PT Serif", "Noto Sans TC", Arial, sans-serif;
 }
 

@@ -3,7 +3,7 @@ use Oni\Web\Helper;
 
 $baseUrl = $systemConfig['blog']['baseUrl'];
 ?>
-<div class="nx-tag col-4">
+<div class="nx-tag col-12">
     <div class="nx-title">
         <h2><?=Helper::linkTo("{$baseUrl}tag/", 'Tag')?></h2>
     </div>
