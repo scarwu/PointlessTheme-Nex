@@ -82,20 +82,16 @@ $description = (!isset($container['description']) || '' === $container['descript
 <body>
     <header id="nx-header">
         <div class="nx-limiter">
-            <h1><a href="/">ScarShow</a></h1>
-            <h2><?=$slogan?></h2>
+            <h1 class="nx-title">
+                <a href="/">ScarShow</a>
+            </h1>
+            <h2 class="nx-slogan"><?=$slogan?></h2>
 
-            <nav class="nx-nav">
-                <div class="nx-item">
-                    <a href="<?=$baseUrl?>works/">Works</a>
-                </div>
-
-                <form class="nx-item nx-search" action="//www.google.com/search?q=as" target="_blank" method="get">
-                    <input type="hidden" name="q" value="site:<?=$domainName?>">
-                    <input type="text" name="q" placeholder="Search">
-                    <input type="submit">
-                </form>
-            </nav>
+            <form class="nx-search" action="//www.google.com/search?q=as" target="_blank" method="get">
+                <input type="hidden" name="q" value="site:<?=$domainName?>">
+                <input type="text" name="q" placeholder="Search">
+                <input type="submit">
+            </form>
         </div>
     </header>
 
@@ -115,9 +111,8 @@ $description = (!isset($container['description']) || '' === $container['descript
 
     <footer id="nx-footer">
         <div class="nx-limiter">
-            <span><?=$footer?></span>
-            <br />
-            <span>Powered by Pointless</span>
+            <p class="nx-text"><?=$footer?></p>
+            <span class="nx-powered">Powered by Pointless</span>
         </div>
     </footer>
 
