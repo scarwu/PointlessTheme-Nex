@@ -126,14 +126,28 @@ class MainController extends Controller
      *
      * @param array $params
      */
-    public function describeAction($params = [])
+    public function indexAction($params = [])
     {
-        $path = join('/', $params) . '/';
+        $path = trim($this->req->uri(), '/');
+        $path = urldecode($path);
+
+        // Redirect to Page Action
+        if ('' === $path) {
+            return $this->pageAction($params);
+        }
+
+        // Check Static File
+        if (null !== BLOG_STATIC && is_file(BLOG_STATIC . "/{$path}")) {
+            header('Content-Type: ' . mime_content_type(BLOG_STATIC . "/{$path}"));
+            header('Content-Length: ' . filesize(BLOG_STATIC . "/{$path}"));
+            echo file_get_contents(BLOG_STATIC . "/{$path}");
+            exit(0);
+        }
 
         // Get Container Data List
         $containerList = $this->handlerList['describe']->getContainerDataList();
 
-        if (isset($containerList[$path])) {
+        if (isset($containerList["{$path}/"])) {
 
             // Set View
             $this->view->setContentPath('container/describe');
@@ -142,10 +156,8 @@ class MainController extends Controller
                 'systemConfig' => Resource::get('system:config'),
                 'themeConfig' => Resource::get('theme:config'),
                 'sideList' => $this->sideList,
-                'container' => $containerList[$path]
+                'container' => $containerList["{$path}/"]
             ]);
-        } else {
-            $this->pageAction($params);
         }
     }
 
@@ -157,6 +169,7 @@ class MainController extends Controller
     public function articleAction($params = [])
     {
         $path = 'article/' . (0 !== count($params) ? join('/', $params) . '/' : '');
+        $path = urldecode($path);
 
         // Get Container Data List
         $containerList = $this->handlerList['article']->getContainerDataList();
@@ -181,6 +194,7 @@ class MainController extends Controller
     public function pageAction($params = [])
     {
         $path = 'page/' . (0 !== count($params) ? join('/', $params) . '/' : '');
+        $path = urldecode($path);
 
         // Get Container Data List
         $containerList = $this->handlerList['page']->getContainerDataList();
@@ -205,6 +219,7 @@ class MainController extends Controller
     public function archiveAction($params = [])
     {
         $path = 'archive/' . (0 !== count($params) ? join('/', $params) . '/' : '');
+        $path = urldecode($path);
 
         // Get Container Data List
         $containerList = $this->handlerList['archive']->getContainerDataList();
@@ -229,6 +244,7 @@ class MainController extends Controller
     public function categoryAction($params = [])
     {
         $path = 'category/' . (0 !== count($params) ? join('/', $params) . '/' : '');
+        $path = urldecode($path);
 
         // Get Container Data List
         $containerList = $this->handlerList['category']->getContainerDataList();
@@ -253,6 +269,7 @@ class MainController extends Controller
     public function tagAction($params = [])
     {
         $path = 'tag/' . (0 !== count($params) ? join('/', $params) . '/' : '');
+        $path = urldecode($path);
 
         // Get Container Data List
         $containerList = $this->handlerList['tag']->getContainerDataList();

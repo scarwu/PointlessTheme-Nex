@@ -96,11 +96,11 @@ $description = (!isset($container['description']) || '' === $container['descript
     </header>
 
     <div id="nx-body">
-        <div class="nx-limiter">
-            <div class="nx-container">
-                <?=$this->loadContent()?>
-            </div>
+        <div class="nx-container">
+            <?=$this->loadContent()?>
+        </div>
 
+        <div class="nx-limiter">
             <div class="nx-side row">
                 <?php foreach ($themeConfig['views']['side'] as $name): ?>
                 <?=$this->loadPartial("side/{$name}")?>
@@ -110,10 +110,10 @@ $description = (!isset($container['description']) || '' === $container['descript
     </div>
 
     <footer id="nx-footer">
-        <div class="nx-limiter">
-            <p class="nx-text"><?=$footer?></p>
-            <span class="nx-powered">Powered by Pointless</span>
-        </div>
+        <p class="nx-text"><?=$footer?></p>
+        <a class="nx-powered" href="https://github.com/scarwu/Pointless" target="_blank">
+            <span>Powered by Pointless</span>
+        </a>
     </footer>
 
     <div id="fb-root"></div>

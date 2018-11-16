@@ -14,37 +14,45 @@ $nextButton = isset($paging['nextUrl'])
 $indicator = "{$paging['currentIndex']} / {$paging['totalIndex']}";
 ?>
 <div class="nx-article">
-    <article class="nx-block">
-        <div class="nx-title">
-            <h1><?=$container['title']?></h1>
-        </div>
-        <div class="nx-content"><?=$container['content']?></div>
-        <div class="nx-info">
-            <span class="nx-archive">
-                <?=Helper::linkTo("{$baseUrl}archive/{$container['year']}/", $container['date'])?>
-            </span>
-            &nbsp;/&nbsp;
-            <span class="nx-category">
-                <?=Helper::linkTo("{$baseUrl}category/{$container['category']}/", $container['category'])?>
-            </span>
-            <?php if (0 < count($container['tags'])):?>
-            &nbsp;/&nbsp;
-            <span class="nx-tag">
-                <?=join(' ', array_map(function ($tag) use ($baseUrl) {
-                    return Helper::linkTo("{$baseUrl}tag/{$tag}/", $tag);
-                }, $container['tags']))?>
-            </span>
-            <?php endif; ?>
-        </div>
-    </article>
+    <div class="nx-limiter">
+        <article class="nx-block">
+            <div class="nx-title">
+                <h1><?=$container['title']?></h1>
+            </div>
+            <div class="nx-content"><?=$container['content']?></div>
+            <div class="nx-info">
+                <span class="nx-archive">
+                    <?=Helper::linkTo("{$baseUrl}archive/{$container['year']}/", $container['date'])?>
+                </span>
+                &nbsp;/&nbsp;
+                <span class="nx-category">
+                    <?=Helper::linkTo("{$baseUrl}category/{$container['category']}/", $container['category'])?>
+                </span>
+                <?php if (0 < count($container['tags'])):?>
+                &nbsp;/&nbsp;
+                <span class="nx-tag">
+                    <?=join(' ', array_map(function ($tag) use ($baseUrl) {
+                        return Helper::linkTo("{$baseUrl}tag/{$tag}/", $tag);
+                    }, $container['tags']))?>
+                </span>
+                <?php endif; ?>
+            </div>
+        </article>
+    </div>
 
     <?php if (null !== $disqusShortname && $container['withMessage']): ?>
-    <div id="disqus_thread" class="nx-disqus_thread"></div>
+    <div class="nx-disqus_thread">
+        <div class="nx-limiter">
+            <div id="disqus_thread"></div>
+        </div>
+    </div>
     <?php endif; ?>
 
-    <div class="nx-paginator">
-        <span class="nx-prev"><?=$prevButton?></span>
-        <span class="nx-next"><?=$nextButton?></span>
-        <span class="nx-count"><?=$indicator?></span>
+    <div class="nx-limiter">
+        <div class="nx-paginator row">
+            <span class="nx-prev col-6"><?=$prevButton?></span>
+            <span class="nx-next col-6"><?=$nextButton?></span>
+            <span class="nx-count"><?=$indicator?></span>
+        </div>
     </div>
 </div>

@@ -20,8 +20,10 @@ define('POI_ROOT', ROOT . '/../subModules/Pointless/src');
 
 if (is_dir(getenv('POI_BLOG_PATH'))) {
     define('BLOG_POST', getenv('POI_BLOG_PATH') . '/posts');
+    define('BLOG_STATIC', getenv('POI_BLOG_PATH') . '/static');
 } else {
     define('BLOG_POST', POI_ROOT . '/sample/posts');
+    define('BLOG_STATIC', null);
 }
 
 // Require Composer Autoloader
@@ -40,9 +42,9 @@ $app = new Oni\Web\App();
 $app->setAttr('controller/namespace', 'WebApp\Controller');
 $app->setAttr('controller/path', ROOT . '/application/controllers');
 $app->setAttr('controller/default/Handler', 'Main');
-$app->setAttr('controller/default/action', 'describe');
+$app->setAttr('controller/default/action', 'index');
 $app->setAttr('controller/error/Handler', 'Main');
-$app->setAttr('controller/error/action', 'describe');
+$app->setAttr('controller/error/action', 'index');
 $app->setAttr('model/namespace', 'WebApp\Model');
 $app->setAttr('model/path', ROOT . '/application/models');
 $app->setAttr('view/path', ROOT . '/application/views');
