@@ -43,7 +43,9 @@ $indicator = "{$paging['currentIndex']} / {$paging['totalIndex']}";
     <?php if (null !== $disqusShortname && $container['withMessage']): ?>
     <div class="nx-disqus_thread">
         <div class="nx-limiter">
-            <div id="disqus_thread"></div>
+            <div class="nx-block">
+                <div id="disqus_thread"></div>
+            </div>
         </div>
     </div>
     <?php endif; ?>

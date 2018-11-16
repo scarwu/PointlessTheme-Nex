@@ -58,26 +58,6 @@ $description = (!isset($container['description']) || '' === $container['descript
         ga('send', 'pageview');
     </script>
     <?php endif; ?>
-    <?php if(null !== $disqusShortname): ?>
-    <script>
-        var disqusShortname = '<?=$disqusShortname?>';
-
-        if (document.getElementsByTagName('disqus_comments')) {
-            asyncLoad('//' + disqusShortname + '.disqus.com/count.js');
-        }
-
-        if (document.getElementById('disqus_thread')) {
-            asyncLoad('//' + disqusShortname + '.disqus.com/embed.js');
-        }
-    </script>
-    <?php endif; ?>
-    <script>
-        if (document.getElementsByTagName('social_tool')) {
-            asyncLoad('//apis.google.com/js/plusone.js');
-            asyncLoad('//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1403512429930397&version=v2.0');
-            asyncLoad('//platform.twitter.com/widgets.js');
-        }
-    </script>
 </head>
 <body>
     <header id="nx-header">
@@ -117,5 +97,17 @@ $description = (!isset($container['description']) || '' === $container['descript
     </footer>
 
     <div id="fb-root"></div>
+
+    <?php if(null !== $disqusShortname): ?>
+    <script>
+        var disqusShortname = '<?=$disqusShortname?>';
+        if (document.getElementsByTagName('disqus_comments')) {
+            asyncLoad('//' + disqusShortname + '.disqus.com/count.js');
+        }
+        if (document.getElementById('disqus_thread')) {
+            asyncLoad('//' + disqusShortname + '.disqus.com/embed.js');
+        }
+    </script>
+    <?php endif; ?>
 </body>
 </html>

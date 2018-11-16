@@ -39,6 +39,7 @@
         &:before {
             position: absolute;
             top: 0;
+            left: 1px;
             height: 30px;
             width: 30px;
             text-align: center;
@@ -50,7 +51,7 @@
         }
 
         input[type=text] {
-            padding: 5px 5px 5px 32px;
+            padding: 5px 5px 5px 30px;
             border: 1px solid #ddd;
             height: 30px;
             font-family: 'PT Serif', '微軟正黑體', '儷黑Pro', 'Ubuntu', Arial;
@@ -134,8 +135,17 @@
             @include font-size(2.4);
         }
 
+        h4 {
+            margin: 30px 0 15px 0;
+            @include font-size(2);
+        }
+
         p {
             color: #333;
+        }
+
+        a {
+            border-bottom: 1px solid #333;
         }
 
         code {
@@ -206,47 +216,55 @@
 
         .nx-prev,
         .nx-next {
-            position: relative;
             @include font-size(2);
+
+            a {
+                position: relative;
+                display: inline-block;
+            }
         }
 
         .nx-prev {
-            display: inline-block;
-            padding-left: 30px;
             padding-right: 50px;
             text-align: left;
 
-            &:before {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 30px;
-                width: 30px;
-                text-align: center;
-                line-height: 30px;
-                color: #999;
-                font-family: 'FontAwesome';
-                content: '\f104';
+            a {
+                padding-left: 30px;
+
+                &:before {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 30px;
+                    width: 30px;
+                    text-align: center;
+                    line-height: 30px;
+                    color: #999;
+                    font-family: 'FontAwesome';
+                    content: '\f104';
+                }
             }
         }
 
         .nx-next {
-            display: inline-block;
             padding-left: 50px;
-            padding-right: 30px;
             text-align: right;
 
-            &:before {
-                position: absolute;
-                top: 0;
-                right: 0;
-                height: 30px;
-                width: 30px;
-                text-align: center;
-                line-height: 30px;
-                color: #999;
-                font-family: 'FontAwesome';
-                content: '\f105';
+            a {
+                padding-right: 30px;
+
+                &:before {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    height: 30px;
+                    width: 30px;
+                    text-align: center;
+                    line-height: 30px;
+                    color: #999;
+                    font-family: 'FontAwesome';
+                    content: '\f105';
+                }
             }
         }
     }
@@ -303,35 +321,17 @@
 .nx-container > .nx-article,
 .nx-container > .nx-describe {
     .nx-disqus_thread {
-        // margin: -25px 0 50px 0;
-        // padding: 20px 50px;
-        // background: #fff;
-        // border: 1px solid #ccc;
+        background-color: #eee;
 
-        // @include border-radius(3px);
-        // @include box-shadow(0px 0px 10px #bbb);
+        .nx-block {
+            padding: 30px 20px;
+        }
     }
 }
 
 .nx-container > .nx-tag,
 .nx-container > .nx-category,
 .nx-container > .nx-archive {
-    .nx-list {
-        // margin-bottom: 20px;
-
-        // section {
-        //     > h1 {
-        //         margin-bottom: 5px;
-        //         border: 1px solid;
-        //         border-color: transparent transparent #ccc transparent;
-        //     }
-
-        //     > span {
-        //         margin-right: 10px;
-        //     }
-        // }
-    }
-
     .nx-sub-block {
         margin-bottom: 25px;
     }
