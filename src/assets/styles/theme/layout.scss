@@ -28,6 +28,7 @@
 
     .nx-limiter {
         position: relative;
+        border-bottom: 1px solid #eee;
     }
 
     .nx-search {
@@ -377,6 +378,8 @@
     $avatar-size: 72px;
     $padding-top-size: ($block-height - $avatar-size) / 2;
 
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
     text-align: center;
 
     .nx-block {
@@ -538,7 +541,7 @@
     }
 
     .nx-limiter {
-        padding: 5px 0;
+        padding: 10px 0;
     }
 
     .nx-container {
@@ -550,6 +553,9 @@
     }
 
     .nx-side > .nx-about {
+        padding-top: 20px;
+        margin-bottom: 10px;
+
         .nx-block {
             width: inherit;
             height: inherit;

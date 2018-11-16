@@ -1,13 +1,23 @@
 <?php
 $disqusShortname = $systemConfig['blog']['disqusShortname'];
 ?>
-<div id="container_describe">
-    <article class="post_block">
-        <h1 class="title"><?=$container['title']?></h1>
-        <div class="content"><?=$container['content']?></div>
-    </article>
+<div class="nx-describe">
+    <div class="nx-limiter">
+        <article class="nx-block">
+            <div class="nx-title">
+                <h1><?=$container['title']?></h1>
+            </div>
+            <div class="nx-content"><?=$container['content']?></div>
+        </article>
+    </div>
 
-    <?php if(null !== $disqusShortname && $container['withMessage']): ?>
-    <div id="disqus_thread"></div>
+    <?php if (null !== $disqusShortname && $container['withMessage']): ?>
+    <div class="nx-disqus_thread">
+        <div class="nx-limiter">
+            <div class="nx-block">
+                <div id="disqus_thread"></div>
+            </div>
+        </div>
+    </div>
     <?php endif; ?>
 </div>

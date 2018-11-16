@@ -1,4 +1,5 @@
 <?php
+$postfix = time();
 $lang = $systemConfig['blog']['lang'];
 $slogan = $systemConfig['blog']['slogan'];
 $footer = $systemConfig['blog']['footer'];
@@ -33,10 +34,10 @@ $description = (!isset($container['description']) || '' === $container['descript
     <link rel="author" href="//plus.google.com/+ScarWu">
     <link rel="image_src" href="//<?="{$domainName}{$baseUrl}"?>images/icon.jpg">
     <link rel="shortcut icon" href="//<?="{$domainName}{$baseUrl}"?>favicon.ico">
-    <link rel="stylesheet" href="<?=$baseUrl?>assets/styles/theme.min.css">
+    <link rel="stylesheet" href="<?=$baseUrl?>assets/styles/theme.min.css?<?=$postfix?>">
 
-    <script src="<?=$baseUrl?>assets/scripts/vendor/modernizr.min.js"></script>
-    <script src="<?=$baseUrl?>assets/scripts/theme.min.js" async></script>
+    <script src="<?=$baseUrl?>assets/scripts/vendor/modernizr.min.js?<?=$postfix?>"></script>
+    <script src="<?=$baseUrl?>assets/scripts/theme.min.js?<?=$postfix?>" async></script>
 
     <script>
         function asyncLoad(src) {
@@ -59,46 +60,38 @@ $description = (!isset($container['description']) || '' === $container['descript
     <?php endif; ?>
 </head>
 <body>
-    <hgroup id="header">
-        <h1><a href="/">ScarShow</a></h1>
-        <h2><?=$slogan?></h2>
-    </hgroup>
+    <header id="nx-header">
+        <div class="nx-limiter">
+            <h1 class="nx-title"><a href="/">ScarShow</a></h1>
+            <h2 class="nx-slogan"><?=$slogan?></h2>
 
-    <nav id="nav">
-        <span class="left">
-            <a href="<?=$baseUrl?>works/">Works</a>
-        </span>
-        <span class="home">
-            <a href="<?=$baseUrl?>">Home</a>
-            <span class="arrow"></span>
-        </span>
-        <span class="right">
-            <a href="<?=$baseUrl?>atom.xml">RSS</a>
-        </span>
-    </nav>
+            <form class="nx-search" action="//www.google.com/search?q=as" target="_blank" method="get">
+                <input type="hidden" name="q" value="site:<?=$domainName?>" />
+                <input type="text" name="q" placeholder="Search" />
+                <input type="submit" />
+            </form>
+        </div>
+    </header>
 
-    <div id="main">
-        <div id="container">
+    <div id="nx-body">
+        <div class="nx-container">
             <?=$this->loadContent()?>
         </div>
-        <div id="side">
-            <div id="side_search">
-                <i class="fa fa-search"></i>
-                <form action="//www.google.com/search?q=as" target="_blank" method="get">
-                    <input type="hidden" name="q" value="site:<?=$domainName?>">
-                    <input type="text" name="q" placeholder="Search">
-                    <input type="submit">
-                </form>
+
+        <div class="nx-limiter">
+            <div class="nx-side row">
+                <?php foreach ($themeConfig['views']['side'] as $name): ?>
+                <?=$this->loadPartial("side/{$name}")?>
+                <?php endforeach; ?>
             </div>
-            <?php foreach ($themeConfig['views']['side'] as $name): ?>
-            <?=$this->loadPartial("side/{$name}")?>
-            <?php endforeach; ?>
         </div>
     </div>
 
-    <footer id="footer">
-        <span><?=$footer?></span>
-        <p>Powered by Pointless</p>
+    <footer id="nx-footer">
+        <p class="nx-text"><?=$footer?></p>
+        <a class="nx-powered" href="https://github.com/scarwu/Pointless" target="_blank">
+            <span>Powered by Pointless</span>
+        </a>
     </footer>
 
     <div id="fb-root"></div>
@@ -106,22 +99,13 @@ $description = (!isset($container['description']) || '' === $container['descript
     <?php if(null !== $disqusShortname): ?>
     <script>
         var disqusShortname = '<?=$disqusShortname?>';
-
         if (document.getElementsByTagName('disqus_comments')) {
             asyncLoad('//' + disqusShortname + '.disqus.com/count.js');
         }
-
         if (document.getElementById('disqus_thread')) {
             asyncLoad('//' + disqusShortname + '.disqus.com/embed.js');
         }
     </script>
     <?php endif; ?>
-    <script>
-        if (document.getElementsByTagName('social_tool')) {
-            asyncLoad('//apis.google.com/js/plusone.js');
-            asyncLoad('//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1403512429930397&version=v2.0');
-            asyncLoad('//platform.twitter.com/widgets.js');
-        }
-    </script>
 </body>
 </html>
