@@ -3,7 +3,7 @@ use Oni\Web\Helper;
 
 $baseUrl = $systemConfig['blog']['baseUrl'];
 ?>
-<div class="nx-archive col-lg-6 col-md-6 col-12">
+<div class="nx-archive col-xl-6 col-lg-6 col-md-6 col-12">
     <div class="nx-title">
         <h2><?=Helper::linkTo("{$baseUrl}archive/", 'Archive')?></h2>
     </div>
