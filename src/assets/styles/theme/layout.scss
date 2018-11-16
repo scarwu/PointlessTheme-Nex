@@ -152,7 +152,8 @@
             margin: 0 3px;
             padding: 0 5px;
             font-family: 'monospace', 'Courier';
-            background: #eee;
+            border: 1px solid #eee;
+            background: #f5f5f5;
             color: #333;
             @include border-radius(5px);
         }
@@ -167,18 +168,18 @@
             margin: 0;
             padding: 0;
             font-family: 'monospace', 'Courier';
+            border: none;
             background: none;
             color: inherit;
             @include border-radius(none);
         }
 
         blockquote {
-            margin: 15px 25px;
-            padding: 0 25px;
+            margin-left: 5px;
+            padding-left: 5px;
+            border-left: 2px solid #ccc;
             font-style: italic;
             color: #222;
-            border-top: 1px solid #999;
-            border-bottom: 1px solid #999;
         }
 
         ul {
@@ -321,10 +322,10 @@
 .nx-container > .nx-article,
 .nx-container > .nx-describe {
     .nx-disqus_thread {
-        background-color: #eee;
+        background-color: #f5f5f5;
 
         .nx-block {
-            padding: 30px 20px;
+            padding: 0 20px;
         }
     }
 }
@@ -420,7 +421,7 @@
             margin: 0;
             height: $avatar-size / 2;
             line-height: $avatar-size / 2;
-            color: #999;
+            color: #666;
             @include font-size(1.6);
         }
 
