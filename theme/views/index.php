@@ -1,5 +1,5 @@
 <?php
-$postfix = time();
+$postfix = 1542455370007;
 $lang = $systemConfig['blog']['lang'];
 $slogan = $systemConfig['blog']['slogan'];
 $footer = $systemConfig['blog']['footer'];
@@ -40,24 +40,11 @@ $description = (!isset($container['description']) || '' === $container['descript
     <script src="<?=$baseUrl?>assets/scripts/theme.min.js?<?=$postfix?>" async></script>
 
     <script>
-        function asyncLoad(src) {
-            var s = document.createElement('script');
-            s.src = src; s.async = true;
-            var e = document.getElementsByTagName('script')[0];
-            e.parentNode.insertBefore(s, e);
-        }
+        window._nex = {
+            googleAnalytics: <?=(null !== $googleAnalytics) ? "'{$googleAnalytics}'" : 'undefined'?>,
+            disqusShortname: <?=(null !== $disqusShortname) ? "'{$disqusShortname}'" : 'undefined'?>
+        };
     </script>
-    <?php if(null !== $googleAnalytics): ?>
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', '<?=$googleAnalytics?>', 'auto');
-        ga('send', 'pageview');
-    </script>
-    <?php endif; ?>
 </head>
 <body>
     <header id="nx-header">
@@ -93,19 +80,5 @@ $description = (!isset($container['description']) || '' === $container['descript
             <span>Powered by Pointless</span>
         </a>
     </footer>
-
-    <div id="fb-root"></div>
-
-    <?php if(null !== $disqusShortname): ?>
-    <script>
-        var disqusShortname = '<?=$disqusShortname?>';
-        if (document.getElementsByTagName('disqus_comments')) {
-            asyncLoad('//' + disqusShortname + '.disqus.com/count.js');
-        }
-        if (document.getElementById('disqus_thread')) {
-            asyncLoad('//' + disqusShortname + '.disqus.com/embed.js');
-        }
-    </script>
-    <?php endif; ?>
 </body>
 </html>

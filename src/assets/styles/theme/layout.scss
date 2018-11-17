@@ -112,6 +112,13 @@
 }
 
 .nx-container {
+    .nx-loading {
+        padding-top: 25px;
+        text-align: center;
+        color: #ccc;
+        @include font-size(4);
+    }
+
     .nx-block {
         padding: 30px 20px;
     }

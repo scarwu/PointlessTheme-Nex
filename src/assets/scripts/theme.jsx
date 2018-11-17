@@ -8,55 +8,71 @@
  * @link        https://github.com/scarwu/PointlessTheme-Nex
  */
 
-import hljs from 'highlight.js';
 import axios from 'axios';
-import $ from 'jquery';
+import hljs from 'highlight.js';
 
-function asyncLoad(src) {
-    var s = document.createElement('script');
+/**
+ * Default Functions
+ */
+let asyncLoad = (src) => {
+    let s = document.createElement('script');
 
     s.src = src;
     s.async = true;
 
-    var e = document.getElementsByTagName('script')[0];
+    let e = document.getElementsByTagName('script')[0];
 
     e.parentNode.insertBefore(s, e);
-}
+};
 
-function replaceElements () {
-    $('.nx-container .nx-content a').attr('target', '_blank');
-    $('.nx-container .nx-content pre').each(function () {
-        hljs.highlightBlock(this);
+let replaceElements = () => {
+    document.querySelectorAll('.nx-container .nx-content a').forEach((node) => {
+        node.target = '_blank';
     });
-}
 
-function refreshPageWithoutLoading (url, stateAction = null) {
-    $.get(url, function(page) {
-        let title = $(page).filter('title').text();
-        let container = $(page).find('.nx-container').html();
+    document.querySelectorAll('.nx-container .nx-content pre').forEach((node) => {
+        hljs.highlightBlock(node);
+    });
+};
 
-        document.title = title;
-        $(document).find('.nx-container').html(container);
+let refreshPageWithoutLoading = (newUrl, stateAction = null) => {
+    let oldTitle = document.title;
+    let oldContainer = document.querySelector('.nx-container').innerHTML;
 
+    // Set Loading
+    document.querySelector('.nx-container').innerHTML = '<div class="nx-loading"><i class="fa fa-spin fa-circle-o-notch"></i></div>';
+
+    axios.get(newUrl).then((res) => {
+        let newDoc = (new DOMParser()).parseFromString(res.data, 'text/html');
+        let newTitle = newDoc.title;
+        let newContainer = newDoc.querySelector('.nx-container').innerHTML;
+
+        // Replace Document Element(s)
+        document.title = newTitle;
+        document.querySelector('.nx-container').innerHTML = newContainer;
+
+        // Replace Elements
         replaceElements();
 
+        // Set History State
         switch (stateAction) {
         case 'push':
             window.history.pushState({
-                url: url,
-                title: title
-            }, title, url);
+                url: newUrl,
+                title: newTitle
+            }, newTitle, newUrl);
 
             break;
         case 'replace':
             window.history.replaceState({
-                url: url,
-                title: title
-            }, title, url);
+                url: newUrl,
+                title: newTitle
+            }, newTitle, newUrl);
 
             break;
         }
 
+        // GA & Disqus
         if (undefined !== window._nex.googleAnalytics) {
             window.ga('set', 'location', window.location.href);
             window.ga('send', 'pageview');
@@ -69,30 +85,43 @@ function refreshPageWithoutLoading (url, stateAction = null) {
                 asyncLoad('//' + window._nex.disqusShortname + '.disqus.com/embed.js');
             } else {
                 window.DISQUS.reset({
-                    reload: true,
-                    config: function () {
-                        this.page.identifier = "disqus_thread";
-                        this.page.url = window.location.href;
-                    }
+                    reload: true
+                });
+            }
+        }
+    }).catch((error) => {
+
+        // Replace Document Element(s)
+        document.querySelector('.nx-container').innerHTML = oldContainer;
+
+        // Replace Elements
+        replaceElements();
+
+        // Disqus
+        if (undefined !== window._nex.disqusShortname
+            && document.getElementById('disqus_thread')) {
+
+            if (undefined === window.DISQUS) {
+                asyncLoad('//' + window._nex.disqusShortname + '.disqus.com/embed.js');
+            } else {
+                window.DISQUS.reset({
+                    reload: true
                 });
             }
         }
     });
-}
+};
 
-$(document).ready(function () {
-    let url = window.location.pathname;
-    let title = document.title;
+/**
+ * Listener
+ */
+window.addEventListener('load', () => {
 
-    window.history.pushState({
-        url: url,
-        title: title
-    }, title, url);
-
+    // GA & Disqus
     if (undefined !== window._nex.googleAnalytics) {
         asyncLoad('//www.google-analytics.com/analytics.js');
 
-        window.ga = function() {
+        window.ga = () => {
             (ga.q = ga.q || []).push(arguments)
         };
         ga.l =+ new Date;
@@ -107,45 +136,63 @@ $(document).ready(function () {
         asyncLoad('//' + window._nex.disqusShortname + '.disqus.com/embed.js');
     }
 
+    // Init History State
+    let url = window.location.pathname;
+    let title = document.title;
+
+    window.history.pushState({
+        url: url,
+        title: title
+    }, title, url);
+
+    // Replace Elements
     replaceElements();
 });
 
-$(document).on('click', 'a', function (event) {
-    if (undefined !== $(this).attr('target')) {
+// No Page Refresh SSR
+window.addEventListener('click', (event) => {
+    if ('a' !== event.target.tagName.toLowerCase()
+        || '_blank' === event.target.target) {
+
         return;
     }
 
     event.preventDefault();
 
-    refreshPageWithoutLoading($(this).attr('href'), 'push');
+    refreshPageWithoutLoading(event.target.href, 'push');
 });
 
 window.addEventListener('popstate', (event) => {
     refreshPageWithoutLoading(event.state.url);
 });
 
+// Page Control Hotkeys
 window.addEventListener('keydown', (event) => {
     switch(event.keyCode) {
     case 37:
     case 72:
-        if($('.nx-paginator .nx-prev a')[0] !== undefined) {
-            $('.nx-paginator .nx-prev a')[0].click();
+        let prev = document.querySelector('.nx-paginator .nx-prev a');
+
+        if(prev !== null) {
+            prev.click();
         }
 
         break;
     case 39:
     case 76:
-        if($('.nx-paginator .nx-next a')[0] !== undefined) {
-            $('.nx-paginator .nx-next a')[0].click();
+        let next = document.querySelector('.nx-paginator .nx-next a');
+
+        if(next !== null) {
+            next.click();
         }
 
         break;
     case 74:
-        scrollBy(0, 40);
+        window.scrollBy(0, 40);
 
         break;
     case 75:
-        scrollBy(0, -40);
+        window.scrollBy(0, -40);
 
         break;
     }

@@ -184,6 +184,16 @@ gulp.task('release:copy:config', function () {
         .pipe(gulp.dest('theme'));
 });
 
+// Replace
+gulp.task('release:replace:index', function () {
+    return gulp.src('theme/views/index.php')
+        .pipe($.replace(
+            '$postfix = time();',
+            '$postfix = ' + postfix + ';',
+        ))
+        .pipe(gulp.dest('theme/views'));
+});
+
 // Optimize
 gulp.task('release:optimize:scripts', function () {
     return gulp.src('theme/assets/scripts/**/*')
@@ -258,6 +268,8 @@ gulp.task('release', function (callback) {
         'release:copy:handlers',
         'release:copy:views',
         'release:copy:config'
+    ], [
+        'release:replace:index'
     ], [
         'release:optimize:images',
         'release:optimize:scripts',
