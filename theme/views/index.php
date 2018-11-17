@@ -1,9 +1,10 @@
 <?php
-$postfix = 1542467478710;
+$postfix = 1542470500075;
 $lang = $systemConfig['blog']['lang'];
 $slogan = $systemConfig['blog']['slogan'];
 $footer = $systemConfig['blog']['footer'];
 
+$protocol = $systemConfig['blog']['withSSL'] ? 'https' : 'http';
 $domainName = $systemConfig['blog']['domainName'];
 $baseUrl = $systemConfig['blog']['baseUrl'];
 
@@ -24,16 +25,16 @@ $description = (!isset($container['description']) || '' === $container['descript
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta property="og:description" name="description" content="<?=$description?>">
     <meta property="og:title" content="<?=$title?>">
-    <meta property="og:url" content="//<?="{$domainName}{$baseUrl}{$container['url']}"?>">
-    <meta property="og:image" content="//<?="{$domainName}{$baseUrl}"?>images/icon.jpg">
-    <meta property="og:type" content="blog">
+    <meta property="og:url" content="<?=$protocol?>://<?="{$domainName}{$baseUrl}{$container['url']}"?>">
+    <meta property="og:image" content="<?=$protocol?>://<?="{$domainName}{$baseUrl}"?>images/icon.jpg">
+    <meta property="og:type" content="website">
 
     <title><?=$title?></title>
 
-    <link rel="canonical" href="//<?="{$domainName}{$baseUrl}{$container['url']}"?>">
-    <link rel="author" href="//plus.google.com/+ScarWu">
-    <link rel="image_src" href="//<?="{$domainName}{$baseUrl}"?>images/icon.jpg">
-    <link rel="shortcut icon" href="//<?="{$domainName}{$baseUrl}"?>favicon.ico">
+    <link rel="canonical" href="<?=$protocol?>://<?="{$domainName}{$baseUrl}{$container['url']}"?>">
+    <link rel="author" href="<?=$protocol?>://plus.google.com/+ScarWu">
+    <link rel="image_src" href="<?=$protocol?>://<?="{$domainName}{$baseUrl}"?>images/icon.jpg">
+    <link rel="shortcut icon" href="<?=$protocol?>://<?="{$domainName}{$baseUrl}"?>favicon.ico">
     <link rel="stylesheet" href="<?=$baseUrl?>assets/styles/theme.min.css?<?=$postfix?>">
 
     <script src="<?=$baseUrl?>assets/scripts/vendor/modernizr.min.js?<?=$postfix?>"></script>
@@ -52,7 +53,7 @@ $description = (!isset($container['description']) || '' === $container['descript
             <h1 class="nx-title"><a href="/">ScarShow</a></h1>
             <h2 class="nx-slogan"><?=$slogan?></h2>
 
-            <form class="nx-search" action="//www.google.com/search?q=as" target="_blank" method="get">
+            <form class="nx-search" action="<?=$protocol?>://www.google.com/search?q=as" target="_blank" method="get">
                 <input type="hidden" name="q" value="site:<?=$domainName?>" />
                 <input type="text" name="q" placeholder="Search" />
                 <input type="submit" />
