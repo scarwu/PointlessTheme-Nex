@@ -8,18 +8,23 @@
  */
 
 #nx-header {
+    position: relative;
     text-align: center;
 
     .nx-title {
         margin: 0;
+        padding-bottom: 25px;
+        border-bottom: 1px solid #eee;
         font-family: ITCEDSCR;
         @include font-size(16);
     }
 
     .nx-slogan {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 25px;
         margin: 0;
-        margin-top: -30px;
-        height: 30px;
         line-height: 30px;
         color: #999;
         pointer-events: none;
@@ -28,7 +33,7 @@
 
     .nx-limiter {
         position: relative;
-        border-bottom: 1px solid #eee;
+        padding-bottom: 0;
     }
 
     .nx-search {
@@ -473,6 +478,11 @@
             @include font-size(12);
         }
 
+        .nx-slogan {
+            bottom: 20px;
+            @include font-size(1.4);
+        }
+
         .nx-search {
             display: none;
         }
@@ -543,7 +553,8 @@
         }
 
         .nx-slogan {
-            display: none;
+            bottom: 20px;
+            @include font-size(1.2);
         }
     }
 
