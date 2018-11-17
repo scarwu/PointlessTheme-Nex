@@ -121,7 +121,8 @@ window.addEventListener('load', () => {
     if (undefined !== window._nex.googleAnalytics) {
         asyncLoad('//www.google-analytics.com/analytics.js');
 
-        window.ga = () => {
+        // only using "function() {}", dont using "() => {}"
+        window.ga = function () {
             (ga.q = ga.q || []).push(arguments)
         };
         ga.l =+ new Date;
