@@ -29,6 +29,7 @@
     "webpack-stream": "^4.0.2"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bootstrap": "^4.0.0",
     "c3": "^0.4.23",
     "d3": "^5.4.0",

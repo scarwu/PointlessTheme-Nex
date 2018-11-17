@@ -2,10 +2,10 @@
 /**
  * Main Controller
  *
- * @package     PointlessTheme - Unique
+ * @package     PointlessTheme - Nex
  * @author      Scar Wu
  * @copyright   Copyright (c) Scar Wu (http://scar.tw)
- * @link        https://github.com/scarwu/PointlessTheme-Unique
+ * @link        https://github.com/scarwu/PointlessTheme-Nex
  */
 
 namespace WebApp\Controller;

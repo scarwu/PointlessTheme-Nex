@@ -2,10 +2,10 @@
 /**
  * Theme Config
  *
- * @package     Pointless Theme - Unique
+ * @package     Pointless Theme - Nex
  * @author      Scar Wu
  * @copyright   Copyright (c) Scar Wu (http://scar.tw)
- * @link        https://github.com/scarwu/PointlessTheme-Unique
+ * @link        https://github.com/scarwu/PointlessTheme-Nex
  */
 
 $config = [
