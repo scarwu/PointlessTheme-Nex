@@ -475,11 +475,12 @@
 @include media-breakpoint-down(sm) {
     #nx-header {
         .nx-title {
+            padding-bottom: 10px;
             @include font-size(12);
         }
 
         .nx-slogan {
-            bottom: 20px;
+            bottom: 5px;
             @include font-size(1.4);
         }
 
@@ -553,8 +554,7 @@
         }
 
         .nx-slogan {
-            bottom: 20px;
-            @include font-size(1.2);
+            display: none;
         }
     }
 
