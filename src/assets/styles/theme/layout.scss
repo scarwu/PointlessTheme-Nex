@@ -138,8 +138,6 @@
     }
 
     .nx-content {
-        @include font-size(1.8);
-
         h2 {
             margin: 30px 0 15px 0;
             @include font-size(3);
@@ -157,6 +155,10 @@
 
         p {
             color: #333;
+            line-height: 28px;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+            @include font-size(1.8);
         }
 
         a {
@@ -286,18 +288,6 @@
 }
 
 .nx-container > .nx-page {
-    .nx-block {
-
-    }
-
-    .nx-title {
-
-    }
-
-    .nx-content {
-        // overflow: hidden;
-    }
-
     .nx-more {
         text-align: center;
         @include font-size(3);
@@ -507,8 +497,6 @@
         }
 
         .nx-content {
-            @include font-size(1.4);
-
             h2 {
                 margin: 30px 0 15px 0;
                 @include font-size(2.4);
@@ -522,6 +510,10 @@
             h4 {
                 margin: 30px 0 15px 0;
                 @include font-size(1.8);
+            }
+
+            p {
+                @include font-size(1.4);
             }
         }
 

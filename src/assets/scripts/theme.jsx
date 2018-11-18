@@ -152,6 +152,7 @@ window.addEventListener('load', () => {
 
 // No Page Refresh SSR
 window.addEventListener('click', (event) => {
+    console.log(event.target.tagName);
     if ('a' !== event.target.tagName.toLowerCase()
         || '_blank' === event.target.target) {
 

@@ -51,7 +51,7 @@ $description = (!isset($container['description']) || '' === $container['descript
     <header id="nx-header">
         <div class="nx-limiter">
             <h1 class="nx-title"><a href="/">ScarShow</a></h1>
-            <h2 class="nx-slogan"><?=$slogan?></h2>
+            <h2 class="nx-slogan"><?=htmlentities($slogan)?></h2>
 
             <form class="nx-search" action="<?=$protocol?>://www.google.com/search?q=as" target="_blank" method="get">
                 <input type="hidden" name="q" value="site:<?=$domainName?>" />
@@ -76,7 +76,7 @@ $description = (!isset($container['description']) || '' === $container['descript
     </div>
 
     <footer id="nx-footer">
-        <p class="nx-text"><?=$footer?></p>
+        <p class="nx-text"><?=htmlentities($footer)?></p>
         <a class="nx-powered" href="https://github.com/scarwu/Pointless" target="_blank">
             <span>Powered by Pointless</span>
         </a>
