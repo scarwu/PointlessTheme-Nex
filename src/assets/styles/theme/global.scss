@@ -211,19 +211,10 @@ body {
 
 html {
     font-size: 62.5%;
-
-    &.no-js > body {
-        display: none;
-    }
-
-    &.js > body {
-        display: block;
-    }
 }
 
 body {
     overflow-y: scroll;
-    // background: #eee;
     font-family: "PT Serif", "Noto Sans TC", Arial, sans-serif;
 }
 

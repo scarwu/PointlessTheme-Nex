@@ -73,16 +73,16 @@ let refreshPageWithoutLoading = (newUrl, stateAction = null) => {
         }
 
         // GA & Disqus
-        if (undefined !== window._nex.googleAnalytics) {
+        if (undefined !== window._nx.googleAnalytics) {
             window.ga('set', 'location', window.location.href);
             window.ga('send', 'pageview');
         }
 
-        if (undefined !== window._nex.disqusShortname
+        if (undefined !== window._nx.disqusShortname
             && document.getElementById('disqus_thread')) {
 
             if (undefined === window.DISQUS) {
-                asyncLoad('//' + window._nex.disqusShortname + '.disqus.com/embed.js');
+                asyncLoad('//' + window._nx.disqusShortname + '.disqus.com/embed.js');
             } else {
                 window.DISQUS.reset({
                     reload: true
@@ -98,11 +98,11 @@ let refreshPageWithoutLoading = (newUrl, stateAction = null) => {
         replaceElements();
 
         // Disqus
-        if (undefined !== window._nex.disqusShortname
+        if (undefined !== window._nx.disqusShortname
             && document.getElementById('disqus_thread')) {
 
             if (undefined === window.DISQUS) {
-                asyncLoad('//' + window._nex.disqusShortname + '.disqus.com/embed.js');
+                asyncLoad('//' + window._nx.disqusShortname + '.disqus.com/embed.js');
             } else {
                 window.DISQUS.reset({
                     reload: true
@@ -118,7 +118,7 @@ let refreshPageWithoutLoading = (newUrl, stateAction = null) => {
 window.addEventListener('load', () => {
 
     // GA & Disqus
-    if (undefined !== window._nex.googleAnalytics) {
+    if (undefined !== window._nx.googleAnalytics) {
         asyncLoad('//www.google-analytics.com/analytics.js');
 
         // only using "function() {}", dont using "() => {}"
@@ -127,14 +127,14 @@ window.addEventListener('load', () => {
         };
         ga.l =+ new Date;
 
-        ga('create', window._nex.googleAnalytics, 'auto');
+        ga('create', window._nx.googleAnalytics, 'auto');
         ga('send', 'pageview');
     }
 
-    if (undefined !== window._nex.disqusShortname
+    if (undefined !== window._nx.disqusShortname
         && document.getElementById('disqus_thread')) {
 
-        asyncLoad('//' + window._nex.disqusShortname + '.disqus.com/embed.js');
+        asyncLoad('//' + window._nx.disqusShortname + '.disqus.com/embed.js');
     }
 
     // Init History State
@@ -152,7 +152,6 @@ window.addEventListener('load', () => {
 
 // No Page Refresh SSR
 window.addEventListener('click', (event) => {
-    console.log(event.target.tagName);
     if ('a' !== event.target.tagName.toLowerCase()
         || '_blank' === event.target.target) {
 
@@ -175,7 +174,7 @@ window.addEventListener('keydown', (event) => {
     case 72:
         let prev = document.querySelector('.nx-paginator .nx-prev a');
 
-        if(prev !== null) {
+        if (prev !== null) {
             prev.click();
         }
 
@@ -184,7 +183,7 @@ window.addEventListener('keydown', (event) => {
     case 76:
         let next = document.querySelector('.nx-paginator .nx-next a');
 
-        if(next !== null) {
+        if (next !== null) {
             next.click();
         }
 

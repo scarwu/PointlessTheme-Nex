@@ -1,5 +1,5 @@
 <?php
-$postfix = 1542598011548;
+$postfix = 1542613261979;
 $lang = $systemConfig['blog']['lang'];
 $slogan = $systemConfig['blog']['slogan'];
 $footer = $systemConfig['blog']['footer'];
@@ -19,7 +19,7 @@ $description = (!isset($container['description']) || '' === $container['descript
     : $container['description'];
 ?>
 <!doctype html>
-<html class="no-js" style="display: block !important;" lang="<?=$lang?>">
+<html lang="<?=$lang?>">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -37,11 +37,9 @@ $description = (!isset($container['description']) || '' === $container['descript
     <link rel="shortcut icon" href="<?=$protocol?>://<?="{$domainName}{$baseUrl}"?>favicon.ico">
     <link rel="stylesheet" href="<?=$baseUrl?>assets/styles/theme.min.css?<?=$postfix?>">
 
-    <script src="<?=$baseUrl?>assets/scripts/vendor/modernizr.min.js?<?=$postfix?>"></script>
     <script src="<?=$baseUrl?>assets/scripts/theme.min.js?<?=$postfix?>" async></script>
-
     <script>
-        window._nex = {
+        window._nx = {
             googleAnalytics: <?=(null !== $googleAnalytics) ? "'{$googleAnalytics}'" : 'undefined'?>,
             disqusShortname: <?=(null !== $disqusShortname) ? "'{$disqusShortname}'" : 'undefined'?>
         };
