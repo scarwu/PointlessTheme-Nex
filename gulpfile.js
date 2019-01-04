@@ -134,6 +134,12 @@ function releaseCopyAll() {
         .pipe(gulp.dest('dist'));
 }
 
+function releaseReplaceIndex() {
+    return gulp.src('dist/views/index.php')
+        .pipe($.replace('$postfix = time()', '$postfix = ' + postfix))
+        .pipe(gulp.dest('dist/views'));
+}
+
 /**
  * Set Variables
  */
@@ -176,7 +182,7 @@ gulp.task('prepare', gulp.series(
 gulp.task('release', gulp.series(
     setEnv, cleanDist,
     'prepare',
-    releaseCopyAll
+    releaseCopyAll, releaseReplaceIndex
 ));
 
 gulp.task('default', gulp.series(
