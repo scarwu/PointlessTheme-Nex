@@ -9,6 +9,8 @@
 let gulp = require('gulp');
 let del = require('del');
 let $ = require('gulp-load-plugins')();
+let log = require('fancy-log');
+let colors = require('ansi-colors');
 let webpack = require('webpack');
 let webpackStream = require('webpack-stream');
 let webpackConfig = require('./webpack.config.js');
@@ -17,9 +19,11 @@ let postfix = (new Date()).getTime().toString();
 let ENVIRONMENT = 'development';
 let WEBPACK_NEED_WATCH = false;
 
-// Assets Compile Task
+/**
+ * Compile Style & Script
+ */
 function handleCompileError(event) {
-    $.util.log($.util.colors.red(event.message), 'error.');
+    log.error(colors.red(event.message), 'error.');
 }
 
 function compileSass() {
