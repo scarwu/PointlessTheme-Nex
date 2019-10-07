@@ -59,7 +59,7 @@ function compileWebpack(callback) {
         webpackConfig.watch = true;
     }
 
-    let result = gulp.src('src/assets/scripts/theme.jsx')
+    let result = gulp.src('src/assets/scripts/theme.js')
         .pipe(webpackStream(webpackConfig, webpack).on('error', handleCompileError))
         .pipe(gulp.dest('temp/assets/scripts'));
 
