@@ -499,7 +499,7 @@
 
         .nx-content {
             line-height: 22px;
-            @include font-size(1.4);
+            @include font-size(1.8);
 
             h2 {
                 margin: 30px 0 15px 0;
@@ -508,12 +508,12 @@
 
             h3 {
                 margin: 30px 0 15px 0;
-                @include font-size(2);
+                @include font-size(2.2);
             }
 
             h4 {
                 margin: 30px 0 15px 0;
-                @include font-size(1.8);
+                @include font-size(2.0);
             }
         }
 
