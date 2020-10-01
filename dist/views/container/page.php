@@ -39,7 +39,7 @@ $indicator = "{$paging['currentIndex']} / {$paging['totalIndex']}";
             </div>
             <div class="nx-content"><?=$article['summary']?></div>
             <div class="nx-more">
-                <a class="fa fa-angle-down" href="<?="{$baseUrl}article/{$article['url']}"?>"></a>
+                <a class="fas fa-chevron-down" href="<?="{$baseUrl}article/{$article['url']}"?>"></a>
             </div>
         </article>
         <?php endforeach; ?>

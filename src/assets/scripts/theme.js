@@ -40,7 +40,7 @@ let refreshPageWithoutLoading = (newUrl, stateAction = null) => {
     let oldContainer = document.querySelector('.nx-container').innerHTML;
 
     // Set Loading
-    document.querySelector('.nx-container').innerHTML = '<div class="nx-loading"><i class="fa fa-spin fa-circle-o-notch"></i></div>';
+    document.querySelector('.nx-container').innerHTML = '<div class="nx-loading"><i class="fas fa-circle-notch fa-spin"></i></div>';
 
     axios.get(newUrl).then((res) => {
         let newDoc = (new DOMParser()).parseFromString(res.data, 'text/html');

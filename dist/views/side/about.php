@@ -11,11 +11,13 @@ $baseUrl = $systemConfig['blog']['baseUrl'];
                 <h3 class="nx-name">刀疤</h3>
                 <p class="nx-says">記錄學習過程、生活以及一些想說的話</p>
                 <div class="nx-links">
-                    <a class="fa fa-rss" href="<?=$baseUrl?>atom.xml" target="_blank"></a>
-                    <a class="fa fa-envelope" href="mailto://xneriscool@gmail.com" target="_blank"></a>
-                    <a class="fa fa-github-square" href="https://github.com/ScarWu" target="_blank"></a>
-                    <a class="fa fa-facebook-square" href="https://www.facebook.com/ScarWu" target="_blank"></a>
-                    <a class="fa fa-wrench" href="<?=$baseUrl?>works/"></a>
+                    <a class="fas fa-rss" href="<?=$baseUrl?>atom.xml" target="_blank"></a>
+                    <a class="fas fa-link" href="<?=$baseUrl?>works/"></a>
+                    <a class="fas fa-envelope" href="mailto://xneriscool@gmail.com" target="_blank"></a>
+                    <a class="fab fa-github-square" href="https://github.com/ScarWu" target="_blank"></a>
+                    <a class="fab fa-facebook-square" href="https://www.facebook.com/ScarWu" target="_blank"></a>
+                    <a class="fab fa-instagram-square" href="https://www.instagram.com/scarwu/" target="_blank"></a>
+                    <a class="fab fa-flickr" href="https://www.flickr.com/photos/scarwu/" target="_blank"></a>
                 </div>
             </div>
         </div>

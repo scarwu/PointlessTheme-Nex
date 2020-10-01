@@ -31,7 +31,6 @@ function compileSass() {
         .pipe($.sass({
             outputStyle: ('production' === ENVIRONMENT) ? 'compressed' : 'expanded'
         }).on('error', handleCompileError))
-        .pipe($.replace('../fonts/', '../../assets/fonts/vendor/'))
         .pipe($.autoprefixer())
         .pipe($.rename(function (path) {
             path.basename = path.basename.split('.')[0];
@@ -107,7 +106,7 @@ function copyAssetsImages() {
 }
 
 function copyVendorFonts() {
-    return gulp.src('node_modules/font-awesome/fonts/*.{otf,eot,svg,ttf,woff,woff2}')
+    return gulp.src('node_modules/@fortawesome/fontawesome-free/webfonts/*.{otf,eot,svg,ttf,woff,woff2}')
         .pipe(gulp.dest('temp/assets/fonts/vendor'));
 }
 

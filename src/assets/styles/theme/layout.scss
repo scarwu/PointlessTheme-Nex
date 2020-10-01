@@ -291,7 +291,7 @@
 .nx-container > .nx-page {
     .nx-more {
         text-align: center;
-        @include font-size(3);
+        @include font-size(2);
 
         a {
             color: #ccc;
