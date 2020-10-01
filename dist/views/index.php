@@ -1,5 +1,5 @@
 <?php
-$postfix = 1601545368550;
+$postfix = 1601552008517;
 $lang = $systemConfig['blog']['lang'];
 $slogan = $systemConfig['blog']['slogan'];
 $footer = $systemConfig['blog']['footer'];
