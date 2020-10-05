@@ -58,13 +58,14 @@
         }
 
         input[type=text] {
-            padding: 5px 5px 5px 30px;
+            padding: 0 5px 0 30px;
             border: 1px solid #ddd;
             height: 30px;
             font-family: "PT Serif", "Noto Sans TC", Arial, sans-serif;
             color: #666;
             z-index: 50;
-            @include border-radius(5px);
+            @include font-size(1.4);
+            @include border-radius(3px);
 
             // Chrome, Firefox, Opera, Safari 10.1+
             &::placeholder {
@@ -131,7 +132,7 @@
 
     .nx-title {
         text-align: center;
-        margin-bottom: 60px;
+        margin-bottom: 40px;
 
         h1 {
             @include font-size(4);
@@ -140,7 +141,7 @@
 
     .nx-content {
         color: #333;
-        line-height: 28px;
+        line-height: 30px;
         letter-spacing: 0.5px;
         @include font-size(1.8);
 
@@ -168,19 +169,18 @@
         }
 
         code {
-            margin: 0 3px;
             padding: 0 5px;
             font-family: 'monospace', 'Courier';
             border: 1px solid #eee;
             background: #f5f5f5;
             color: #333;
-            @include border-radius(5px);
+            @include border-radius(3px);
         }
 
         pre {
             padding: 10px;
             background: #222;
-            @include border-radius(5px);
+            @include border-radius(3px);
         }
 
         pre > code {
@@ -293,6 +293,14 @@
 }
 
 .nx-container > .nx-page {
+    .nx-cover-image {
+        margin: 0 auto 15px auto;
+        height: 160px;
+        background-position: center center;
+        background-size: cover;
+        @include border-radius(3px);
+    }
+
     .nx-more {
         text-align: center;
         @include font-size(2);
@@ -471,7 +479,7 @@
     #nx-header {
         .nx-title {
             padding-bottom: 10px;
-            @include font-size(12);
+            @include font-size(14);
         }
 
         .nx-slogan {
@@ -486,6 +494,12 @@
 
     .nx-limiter {
         padding: 10px;
+    }
+
+    .nx-container > .nx-page {
+        .nx-cover-image {
+            height: 120px;
+        }
     }
 
     .nx-container {
@@ -546,7 +560,7 @@
 @include media-breakpoint-down(xs) {
     #nx-header {
         .nx-title {
-            @include font-size(8);
+            @include font-size(10);
         }
 
         .nx-slogan {
@@ -556,6 +570,12 @@
 
     .nx-limiter {
         padding: 10px 0;
+    }
+
+    .nx-container > .nx-page {
+        .nx-cover-image {
+            height: 80px;
+        }
     }
 
     .nx-container {

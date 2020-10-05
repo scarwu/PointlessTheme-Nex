@@ -37,6 +37,9 @@ $indicator = "{$paging['currentIndex']} / {$paging['totalIndex']}";
                     <?php endif; ?>
                 </div>
             </div>
+            <?php if (true === isset($article['coverImage'])): ?>
+            <div class="nx-cover-image" style="background-image: url('<?=$article['coverImage']?>')"></div>
+            <?php endif; ?>
             <div class="nx-content"><?=$article['summary']?></div>
             <div class="nx-more">
                 <a class="fas fa-chevron-down" href="<?="{$baseUrl}article/{$article['url']}"?>"></a>
