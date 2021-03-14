@@ -211,6 +211,10 @@
             @include border-radius(3px);
         }
 
+        video {
+            @include border-radius(3px);
+        }
+
         th,
         td {
             padding: 0 5px;
