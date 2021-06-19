@@ -463,23 +463,23 @@
     }
 }
 
-// ≥ 1200px
+// < 1400px
+@include media-breakpoint-down(xxl) {
+
+}
+
+// < 1200px
 @include media-breakpoint-down(xl) {
 
 }
 
-// ≥ 992px
+// < 992px
 @include media-breakpoint-down(lg) {
 
 }
 
-// ≥ 768px
+// < 768px
 @include media-breakpoint-down(md) {
-
-}
-
-// ≥ 576px
-@include media-breakpoint-down(sm) {
     #nx-header {
         .nx-title {
             padding-bottom: 10px;
@@ -561,7 +561,7 @@
 }
 
 // < 576px
-@include media-breakpoint-down(xs) {
+@include media-breakpoint-down(sm) {
     #nx-header {
         .nx-title {
             @include font-size(10);

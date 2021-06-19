@@ -25,9 +25,6 @@ module.exports = {
             '.js'
         ]
     },
-    externals: {
-
-    },
     module: {
         rules: [
             {
@@ -35,7 +32,7 @@ module.exports = {
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
-                    query: {
+                    options: {
                         cacheDirectory: true,
                         plugins: [
                             // Stage 0

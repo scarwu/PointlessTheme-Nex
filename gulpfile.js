@@ -45,7 +45,7 @@ function compileWebpack(callback) {
             'process.env': {
                 'ENV': "'production'",
                 'BUILD_TIME': postfix,
-                'NODE_ENV': "'production'"
+                'NODE_ENV': JSON.stringify('production')
             }
         });
 
