@@ -91,7 +91,7 @@ let refreshPageWithoutLoading = (newUrl, stateAction = null) => {
             }
         }
     }).catch((error) => {
-
+        console.log(error)
         // Replace Document Element(s)
         document.querySelector('.nx-container').innerHTML = oldContainer
 
@@ -123,8 +123,7 @@ window.addEventListener('load', () => {
         asyncLoad('https://www.googletagmanager.com/gtag/js?id=' +  window._nx.googleAnalytics)
 
         window.dataLayer = window.dataLayer || []
-
-        function gtag() {
+        window.gtag = function () {
             dataLayer.push(arguments)
         }
 
