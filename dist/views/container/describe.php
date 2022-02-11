@@ -1,5 +1,5 @@
 <?php
-$disqusShortname = $systemConfig['blog']['disqusShortname'];
+$disqusShortname = $blog['config']['disqusShortname'];
 ?>
 <div class="nx-describe">
     <div class="nx-limiter">

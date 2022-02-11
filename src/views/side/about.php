@@ -1,5 +1,5 @@
 <?php
-$baseUrl = $systemConfig['blog']['baseUrl'];
+$baseUrl = $blog['config']['baseUrl'];
 ?>
 <div class="nx-about col-12">
     <div class="nx-content">

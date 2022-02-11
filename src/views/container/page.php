@@ -1,16 +1,16 @@
 <?php
-use Oni\Web\View\Helper;
+use Oni\Web\Helper\HTML;
 
-$domainName = $systemConfig['blog']['domainName'];
-$baseUrl = $systemConfig['blog']['baseUrl'];
-$disqusShortname = $systemConfig['blog']['disqusShortname'];
+$domainName = $blog['config']['domainName'];
+$baseUrl = $blog['config']['baseUrl'];
+$disqusShortname = $blog['config']['disqusShortname'];
 
 // Paging
 $paging = $container['paging'];
 $prevButton = isset($paging['prevUrl'])
-    ? Helper::linkTo("{$baseUrl}{$paging['prevUrl']}", 'Prev Posts') : '';
+    ? HTML::linkTo("{$baseUrl}{$paging['prevUrl']}", 'Prev Posts') : '';
 $nextButton = isset($paging['nextUrl'])
-    ? Helper::linkTo("{$baseUrl}{$paging['nextUrl']}", 'Next Posts') : '';
+    ? HTML::linkTo("{$baseUrl}{$paging['nextUrl']}", 'Next Posts') : '';
 $indicator = "{$paging['currentIndex']} / {$paging['totalIndex']}";
 ?>
 <div class="nx-page">
@@ -18,20 +18,20 @@ $indicator = "{$paging['currentIndex']} / {$paging['totalIndex']}";
         <?php foreach ($container['list'] as $article): ?>
         <article class="nx-block">
             <div class="nx-title">
-                <h1><?=Helper::linkTo("{$baseUrl}article/{$article['url']}", $article['title'])?></h1>
+                <h1><?=HTML::linkTo("{$baseUrl}article/{$article['url']}", $article['title'])?></h1>
                 <div class="nx-info">
                     <span class="nx-archive">
-                        <?=Helper::linkTo("{$baseUrl}archive/{$article['year']}/", $article['date'])?>
+                        <?=HTML::linkTo("{$baseUrl}archive/{$article['year']}/", $article['date'])?>
                     </span>
                     &nbsp;/&nbsp;
                     <span class="nx-category">
-                        <?=Helper::linkTo("{$baseUrl}category/{$article['category']}/", $article['category'])?>
+                        <?=HTML::linkTo("{$baseUrl}category/{$article['category']}/", $article['category'])?>
                     </span>
                     <?php if (0 < count($article['tags'])):?>
                     &nbsp;/&nbsp;
                     <span class="nx-tag">
                         <?=join(' ', array_map(function ($tag) use ($baseUrl) {
-                            return Helper::linkTo("{$baseUrl}tag/{$tag}/", $tag);
+                            return HTML::linkTo("{$baseUrl}tag/{$tag}/", $tag);
                         }, $article['tags']))?>
                     </span>
                     <?php endif; ?>

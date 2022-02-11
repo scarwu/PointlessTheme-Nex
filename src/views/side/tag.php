@@ -1,17 +1,17 @@
 <?php
-use Oni\Web\View\Helper;
+use Oni\Web\Helper\HTML;
 
-$baseUrl = $systemConfig['blog']['baseUrl'];
+$baseUrl = $blog['config']['baseUrl'];
 ?>
 <div class="nx-tag col-12">
     <div class="nx-title">
-        <h2><?=Helper::linkTo("{$baseUrl}tag/", 'Tag')?></h2>
+        <h2><?=HTML::linkTo("{$baseUrl}tag/", 'Tag')?></h2>
     </div>
     <div class="nx-content">
         <?php foreach ($sideList['tag'] as $key => $postList): ?>
         <span class="nx-item">
             <?php $count = count($postList); ?>
-            <?=Helper::linkTo("{$baseUrl}tag/{$key}/", $key)?>
+            <?=HTML::linkTo("{$baseUrl}tag/{$key}/", $key)?>
         </span>
         <?php endforeach; ?>
     </div>
