@@ -1,5 +1,5 @@
 <?php
-$postfix = 1644748203813;
+$postfix = 1644755983538;
 $lang = $blog['config']['lang'];
 $slogan = $blog['config']['slogan'];
 $footer = $blog['config']['footer'];
@@ -35,8 +35,18 @@ $description = (!isset($container['description']) || '' === $container['descript
     <link rel="author" href="<?=$protocol?>://plus.google.com/+ScarWu">
     <link rel="image_src" href="<?=$protocol?>://<?="{$domainName}{$baseUrl}"?>images/icon.jpg">
     <link rel="shortcut icon" href="<?=$protocol?>://<?="{$domainName}{$baseUrl}"?>favicon.ico">
+    <?php if (true === isset($editorAssets)): ?>
+    <?php foreach ($editorAssets['styles'] as $file): ?>
+    <link rel="stylesheet" href="<?=$baseUrl?><?=$file?>?<?=$postfix?>">
+    <?php endforeach; ?>
+    <?php endif; ?>
     <link rel="stylesheet" href="<?=$baseUrl?>assets/styles/theme.min.css?<?=$postfix?>">
 
+    <?php if (true === isset($editorAssets)): ?>
+    <?php foreach ($editorAssets['scripts'] as $file): ?>
+    <script src="<?=$baseUrl?><?=$file?>?<?=$postfix?>" async></script>
+    <?php endforeach; ?>
+    <?php endif; ?>
     <script src="<?=$baseUrl?>assets/scripts/theme.min.js?<?=$postfix?>" async></script>
     <script>
         window._nx = {
