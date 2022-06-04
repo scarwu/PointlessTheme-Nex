@@ -14,7 +14,7 @@ import hljs from 'highlight.js'
 /**
  * Default Functions
  */
-let asyncLoad = (src) => {
+ const asyncLoad = (src) => {
     let s = document.createElement('script')
 
     s.src = src
@@ -25,7 +25,7 @@ let asyncLoad = (src) => {
     e.parentNode.insertBefore(s, e)
 }
 
-let replaceElements = () => {
+const replaceElements = () => {
     document.querySelectorAll('.nx-container .nx-content a').forEach((node) => {
         node.target = '_blank'
     })
@@ -35,7 +35,28 @@ let replaceElements = () => {
     })
 }
 
-let refreshPageWithoutLoading = (newUrl, stateAction = null) => {
+const resizeElements = () => {
+    const limitWidth = document.querySelector('.nx-container .nx-content').offsetWidth < 960
+        ? document.querySelector('.nx-container .nx-content').offsetWidth : 960
+
+    document.querySelectorAll('.nx-container .nx-content img').forEach((node) => {
+        if (node.offsetWidth < node.offsetHeight) {
+            node.style.height = limitWidth + 'px'
+        } else if (node.offsetWidth >= node.offsetHeight) {
+            node.style.width = limitWidth + 'px'
+        }
+    })
+
+    document.querySelectorAll('.nx-container .nx-content video').forEach((node) => {
+        if (node.offsetWidth < node.offsetHeight) {
+            node.style.height = limitWidth + 'px'
+        } else if (node.offsetWidth >= node.offsetHeight) {
+            node.style.width = limitWidth + 'px'
+        }
+    })
+}
+
+const refreshPageWithoutLoading = (newUrl, stateAction = null) => {
     let oldTitle = document.title
     let oldContainer = document.querySelector('.nx-container').innerHTML
 
@@ -53,6 +74,9 @@ let refreshPageWithoutLoading = (newUrl, stateAction = null) => {
 
         // Replace Elements
         replaceElements()
+
+        // Resize Elements
+        resizeElements()
 
         // Set History State
         switch (stateAction) {
@@ -91,12 +115,15 @@ let refreshPageWithoutLoading = (newUrl, stateAction = null) => {
             }
         }
     }).catch((error) => {
-        console.log(error)
+
         // Replace Document Element(s)
         document.querySelector('.nx-container').innerHTML = oldContainer
 
         // Replace Elements
         replaceElements()
+
+        // Resize Elements
+        resizeElements()
 
         // Disqus
         if (undefined !== window._nx.disqusShortname
@@ -148,6 +175,15 @@ window.addEventListener('load', () => {
 
     // Replace Elements
     replaceElements()
+
+    // Resize Elements
+    resizeElements()
+})
+
+window.addEventListener('resize', () => {
+
+    // Resize Elements
+    resizeElements()
 })
 
 // No Page Refresh SSR
