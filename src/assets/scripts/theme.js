@@ -50,8 +50,16 @@ const resizeElements = () => {
     document.querySelectorAll('.nx-container .nx-content video').forEach((node) => {
         if (node.offsetWidth < node.offsetHeight) {
             node.style.height = limitWidth + 'px'
+
+            if (undefined !== node.width && undefined !== node.height) {
+                node.style.width = ((limitWidth * node.width) / node.height) + 'px'
+            }
         } else if (node.offsetWidth >= node.offsetHeight) {
             node.style.width = limitWidth + 'px'
+
+            if (undefined !== node.width && undefined !== node.height) {
+                node.style.height = ((limitWidth * node.height) / node.width) + 'px'
+            }
         }
     })
 }
