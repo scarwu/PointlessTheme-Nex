@@ -14,7 +14,15 @@ import hljs from 'highlight.js'
 /**
  * Default Functions
  */
- const asyncLoad = (src) => {
+const isEmpty = (variable) => {
+    return (undefined === variable || null === variable)
+}
+
+const isNotEmpty = (variable) => {
+    return (undefined !== variable && null !== variable)
+}
+
+const asyncLoad = (src) => {
     let s = document.createElement('script')
 
     s.src = src
@@ -36,29 +44,34 @@ const replaceElements = () => {
 }
 
 const resizeElements = () => {
-    const limitWidth = document.querySelector('.nx-container .nx-content').offsetWidth < 960
-        ? document.querySelector('.nx-container .nx-content').offsetWidth : 960
+    const content = document.querySelector('.nx-container .nx-content')
+
+    if (isEmpty(content)) {
+        return
+    }
+
+    const contentWidth = content.offsetWidth < 960 ? content.offsetWidth : 960
 
     document.querySelectorAll('.nx-container .nx-content img').forEach((node) => {
         if (node.offsetWidth < node.offsetHeight) {
-            node.style.height = limitWidth + 'px'
+            node.style.height = contentWidth + 'px'
         } else if (node.offsetWidth >= node.offsetHeight) {
-            node.style.width = limitWidth + 'px'
+            node.style.width = contentWidth + 'px'
         }
     })
 
     document.querySelectorAll('.nx-container .nx-content video').forEach((node) => {
         if (node.offsetWidth < node.offsetHeight) {
-            node.style.height = limitWidth + 'px'
+            node.style.height = contentWidth + 'px'
 
-            if (undefined !== node.width && undefined !== node.height) {
-                node.style.width = ((limitWidth * node.width) / node.height) + 'px'
+            if (isNotEmpty(node.width) && isNotEmpty(node.height)) {
+                node.style.width = ((contentWidth * node.width) / node.height) + 'px'
             }
         } else if (node.offsetWidth >= node.offsetHeight) {
-            node.style.width = limitWidth + 'px'
+            node.style.width = contentWidth + 'px'
 
-            if (undefined !== node.width && undefined !== node.height) {
-                node.style.height = ((limitWidth * node.height) / node.width) + 'px'
+            if (isNotEmpty(node.width) && isNotEmpty(node.height)) {
+                node.style.height = ((contentWidth * node.height) / node.width) + 'px'
             }
         }
     })
@@ -105,16 +118,16 @@ const refreshPageWithoutLoading = (newUrl, stateAction = null) => {
         }
 
         // GA & Disqus
-        if (undefined !== window._nx.googleAnalytics) {
+        if (isNotEmpty(window._nx.googleAnalytics)) {
             gtag('send', 'page_view', {
                 page_location: window.location.href
             })
         }
 
-        if (undefined !== window._nx.disqusShortname
+        if (isNotEmpty(window._nx.disqusShortname)
             && document.getElementById('disqus_thread')
         ) {
-            if (undefined === window.DISQUS) {
+            if (isEmpty(window.DISQUS)) {
                 asyncLoad('//' + window._nx.disqusShortname + '.disqus.com/embed.js')
             } else {
                 window.DISQUS.reset({
@@ -134,10 +147,10 @@ const refreshPageWithoutLoading = (newUrl, stateAction = null) => {
         resizeElements()
 
         // Disqus
-        if (undefined !== window._nx.disqusShortname
+        if (isNotEmpty(window._nx.disqusShortname)
             && document.getElementById('disqus_thread')
         ) {
-            if (undefined === window.DISQUS) {
+            if (isEmpty(window.DISQUS)) {
                 asyncLoad('//' + window._nx.disqusShortname + '.disqus.com/embed.js')
             } else {
                 window.DISQUS.reset({
@@ -154,7 +167,7 @@ const refreshPageWithoutLoading = (newUrl, stateAction = null) => {
 window.addEventListener('load', () => {
 
     // GA & Disqus
-    if (undefined !== window._nx.googleAnalytics) {
+    if (isNotEmpty(window._nx.googleAnalytics)) {
         asyncLoad('https://www.googletagmanager.com/gtag/js?id=' +  window._nx.googleAnalytics)
 
         window.dataLayer = window.dataLayer || []
@@ -166,7 +179,7 @@ window.addEventListener('load', () => {
         gtag('config', window._nx.googleAnalytics)
     }
 
-    if (undefined !== window._nx.disqusShortname
+    if (isNotEmpty(window._nx.disqusShortname)
         && document.getElementById('disqus_thread')
     ) {
         asyncLoad('//' + window._nx.disqusShortname + '.disqus.com/embed.js')
@@ -218,7 +231,7 @@ window.addEventListener('keydown', (event) => {
     case 72:
         let prev = document.querySelector('.nx-paginator .nx-prev a')
 
-        if (prev !== null) {
+        if (isNotEmpty(prev)) {
             prev.click()
         }
 
@@ -227,7 +240,7 @@ window.addEventListener('keydown', (event) => {
     case 76:
         let next = document.querySelector('.nx-paginator .nx-next a')
 
-        if (next !== null) {
+        if (isNotEmpty(next)) {
             next.click()
         }
 
