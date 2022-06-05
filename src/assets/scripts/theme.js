@@ -56,23 +56,28 @@ const resizeMedia = (node) => {
         return
     }
 
-    if (node.offsetWidth < node.offsetHeight) {
-        node.style.height = contentWidth + 'px'
+    if ('img' === node.tagName.toLowerCase()) {
+        node.style.height = 'inherit'
+        node.style.width = 'inherit'
+    }
 
-        if (isNotEmpty(node.width)
+    if (node.offsetWidth < node.offsetHeight) {
+        node.style.maxHeight = contentWidth + 'px'
+
+        if ('video' === node.tagName.toLowerCase()
+            && isNotEmpty(node.width)
             && isNotEmpty(node.height)
-            && 'video' === node.tagName.toLowerCase()
         ) {
-            node.style.width = ((contentWidth * node.width) / node.height) + 'px'
+            node.style.maxWidth = ((contentWidth * node.width) / node.height) + 'px'
         }
     } else if (node.offsetWidth >= node.offsetHeight) {
-        node.style.width = contentWidth + 'px'
+        node.style.maxWidth = contentWidth + 'px'
 
-        if (isNotEmpty(node.width)
+        if ('video' === node.tagName.toLowerCase()
+            && isNotEmpty(node.width)
             && isNotEmpty(node.height)
-            && 'video' === node.tagName.toLowerCase()
         ) {
-            node.style.height = ((contentWidth * node.height) / node.width) + 'px'
+            node.style.maxHeight = ((contentWidth * node.height) / node.width) + 'px'
         }
     }
 }
@@ -86,14 +91,14 @@ const replaceElements = () => {
         hljs.highlightBlock(node)
     })
 
-    document.querySelectorAll('.nx-container .nx-content img').forEach((node) => {
+    document.querySelectorAll('.nx-container .nx-content p img').forEach((node) => {
         node.loading = 'lazy'
         node.onload = () => {
             resizeMedia(node)
         }
     })
 
-    document.querySelectorAll('.nx-container .nx-content video').forEach((node) => {
+    document.querySelectorAll('.nx-container .nx-content p video').forEach((node) => {
         node.loading = 'lazy'
         node.onload = () => {
             resizeMedia(node)
@@ -102,11 +107,11 @@ const replaceElements = () => {
 }
 
 const resizeElements = () => {
-    document.querySelectorAll('.nx-container .nx-content img').forEach((node) => {
+    document.querySelectorAll('.nx-container .nx-content p img').forEach((node) => {
         resizeMedia(node)
     })
 
-    document.querySelectorAll('.nx-container .nx-content video').forEach((node) => {
+    document.querySelectorAll('.nx-container .nx-content p video').forEach((node) => {
         resizeMedia(node)
     })
 }
