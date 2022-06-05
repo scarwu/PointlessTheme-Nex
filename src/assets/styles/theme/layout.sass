@@ -14,7 +14,7 @@
         padding-bottom: 25px
         border-bottom: 1px solid #eee
         font-family: ITCEDSCR
-        @include font-size(16)
+        +font-size(16)
 
     .nx-slogan
         position: absolute
@@ -25,7 +25,7 @@
         line-height: 30px
         color: #999
         pointer-events: none
-        @include font-size(1.8)
+        +font-size(1.8)
 
     .nx-limiter
         position: relative
@@ -58,8 +58,8 @@
             font-family: "PT Serif", "Noto Sans TC", Arial, sans-serif
             color: #666
             z-index: 50
-            @include font-size(1.4)
-            @include border-radius(3px)
+            +font-size(1.4)
+            +border-radius(3px)
 
             // Chrome, Firefox, Opera, Safari 10.1+
             &::placeholder
@@ -87,7 +87,7 @@
     .nx-text
         margin: 0
         color: #666
-        @include font-size(1.2)
+        +font-size(1.2)
 
     .nx-powered
         padding: 0
@@ -105,7 +105,7 @@
         padding-top: 25px
         text-align: center
         color: #ccc
-        @include font-size(4)
+        +font-size(4)
 
     .nx-block
         padding: 30px 20px
@@ -115,25 +115,25 @@
         margin-bottom: 40px
 
         h1
-            @include font-size(4)
+            +font-size(4)
 
     .nx-content
         color: #333
         line-height: 30px
         letter-spacing: 0.5px
-        @include font-size(1.8)
+        +font-size(1.8)
 
         h2
             margin: 30px 0 15px 0
-            @include font-size(3)
+            +font-size(3)
 
         h3
             margin: 30px 0 15px 0
-            @include font-size(2.4)
+            +font-size(2.4)
 
         h4
             margin: 30px 0 15px 0
-            @include font-size(2)
+            +font-size(2)
 
         p
             margin-bottom: 15px
@@ -147,12 +147,12 @@
             border: 1px solid #eee
             background: #f5f5f5
             color: #333
-            @include border-radius(3px)
+            +border-radius(3px)
 
         pre
             padding: 10px
             background: #222
-            @include border-radius(3px)
+            +border-radius(3px)
 
         pre > code
             margin: 0
@@ -161,7 +161,7 @@
             border: none
             background: none
             color: inherit
-            @include border-radius(none)
+            +border-radius(none)
 
         blockquote
             margin-left: 5px
@@ -175,10 +175,10 @@
 
         img
             width: 100%
-            @include border-radius(3px)
+            +border-radius(3px)
 
         video
-            @include border-radius(3px)
+            +border-radius(3px)
 
         th,
         td
@@ -197,16 +197,16 @@
             text-align: center
             color: #666
             pointer-events: none
-            @include font-size(1.6)
+            +font-size(1.6)
 
         .nx-prev,
         .nx-next
-            @include font-size(2)
+            +font-size(2)
 
             a
                 position: relative
                 display: inline-block
-                @include nowrap()
+                +nowrap()
 
         .nx-prev
             padding-right: 50px
@@ -254,11 +254,11 @@
         height: 160px
         background-position: center center
         background-size: cover
-        @include border-radius(3px)
+        +border-radius(3px)
 
     .nx-more
         text-align: center
-        @include font-size(2)
+        +font-size(2)
 
         a
             color: #ccc
@@ -271,7 +271,7 @@
     .nx-info
         color: #999
         text-align: center
-        @include font-size(1.2)
+        +font-size(1.2)
 
         a
             color: #ccc
@@ -295,11 +295,11 @@
 
     .nx-sub-title
         h2
-            @include font-size(3)
+            +font-size(3)
 
     .nx-info
         color: #999
-        @include font-size(1.2)
+        +font-size(1.2)
 
         a
             color: #ccc
@@ -315,10 +315,10 @@
         text-align: center
 
         h2
-            @include font-size(3.2)
+            +font-size(3.2)
 
     .nx-content
-        @include font-size(1.8)
+        +font-size(1.8)
 
 .nx-side > .nx-about
     $block-height: 96px
@@ -342,7 +342,7 @@
             width: $avatar-size
             height: $avatar-size
             border: 1px solid #ccc
-            @include border-radius($avatar-size / 2)
+            +border-radius($avatar-size / 2)
 
     .nx-info
         padding-top: $padding-top-size
@@ -354,7 +354,7 @@
             margin: 0
             height: $avatar-size / 2
             line-height: $avatar-size / 2
-            @include font-size(2.2)
+            +font-size(2.2)
 
         .nx-says
             display: inline-block
@@ -362,12 +362,12 @@
             height: $avatar-size / 2
             line-height: $avatar-size / 2
             color: #666
-            @include font-size(1.6)
+            +font-size(1.6)
 
         .nx-links
             height: $avatar-size / 2
             line-height: $avatar-size / 2
-            @include font-size(2.4)
+            +font-size(2.4)
 
 .nx-side > .nx-archive,
 .nx-side > .nx-category,
@@ -397,11 +397,11 @@
     #nx-header
         .nx-title
             padding-bottom: 10px
-            @include font-size(14)
+            +font-size(14)
 
         .nx-slogan
             bottom: 5px
-            @include font-size(1.4)
+            +font-size(1.4)
 
         .nx-search
             display: none
@@ -421,42 +421,42 @@
             margin-bottom: 30px
 
             h1
-                @include font-size(3)
+                +font-size(3)
 
         .nx-content
             line-height: 30px
-            @include font-size(1.8)
+            +font-size(1.8)
 
             h2
                 margin: 30px 0 15px 0
-                @include font-size(2.4)
+                +font-size(2.4)
 
             h3
                 margin: 30px 0 15px 0
-                @include font-size(2.2)
+                +font-size(2.2)
 
             h4
                 margin: 30px 0 15px 0
-                @include font-size(2.0)
+                +font-size(2.0)
 
         .nx-paginator
             .nx-prev,
             .nx-next
-                @include font-size(1.6)
+                +font-size(1.6)
 
     .nx-side
         .nx-title
             h2
-                @include font-size(2.4)
+                +font-size(2.4)
 
         .nx-content
-            @include font-size(1.4)
+            +font-size(1.4)
 
 // < 576px
 @include media-breakpoint-down(sm)
     #nx-header
         .nx-title
-            @include font-size(10)
+            +font-size(10)
 
         .nx-slogan
             display: none
