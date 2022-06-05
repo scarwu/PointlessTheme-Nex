@@ -14,6 +14,12 @@ import hljs from 'highlight.js'
 /**
  * Default Functions
  */
+const log = (...params) => {
+    if ('production' !== process.env.NODE_ENV) {
+        console.log.apply(this, params)
+    }
+}
+
 const isEmpty = (variable) => {
     return (undefined === variable || null === variable)
 }
@@ -33,17 +39,7 @@ const asyncLoad = (src) => {
     e.parentNode.insertBefore(s, e)
 }
 
-const replaceElements = () => {
-    document.querySelectorAll('.nx-container .nx-content a').forEach((node) => {
-        node.target = '_blank'
-    })
-
-    document.querySelectorAll('.nx-container .nx-content pre').forEach((node) => {
-        hljs.highlightBlock(node)
-    })
-}
-
-const resizeElements = () => {
+const resizeMedia = (node) => {
     const content = document.querySelector('.nx-container .nx-content')
 
     if (isEmpty(content)) {
@@ -52,28 +48,66 @@ const resizeElements = () => {
 
     const contentWidth = content.offsetWidth < 960 ? content.offsetWidth : 960
 
+    if (isEmpty(node.offsetWidth)
+        || isEmpty(node.offsetHeight)
+        || 0 === node.offsetWidth
+        || 0 === node.offsetHeight
+    ) {
+        return
+    }
+
+    if (node.offsetWidth < node.offsetHeight) {
+        node.style.height = contentWidth + 'px'
+
+        if (isNotEmpty(node.width)
+            && isNotEmpty(node.height)
+            && 'video' === node.tagName.toLowerCase()
+        ) {
+            node.style.width = ((contentWidth * node.width) / node.height) + 'px'
+        }
+    } else if (node.offsetWidth >= node.offsetHeight) {
+        node.style.width = contentWidth + 'px'
+
+        if (isNotEmpty(node.width)
+            && isNotEmpty(node.height)
+            && 'video' === node.tagName.toLowerCase()
+        ) {
+            node.style.height = ((contentWidth * node.height) / node.width) + 'px'
+        }
+    }
+}
+
+const replaceElements = () => {
+    document.querySelectorAll('.nx-container .nx-content a').forEach((node) => {
+        node.target = '_blank'
+    })
+
+    document.querySelectorAll('.nx-container .nx-content pre').forEach((node) => {
+        hljs.highlightBlock(node)
+    })
+
     document.querySelectorAll('.nx-container .nx-content img').forEach((node) => {
-        if (node.offsetWidth < node.offsetHeight) {
-            node.style.height = contentWidth + 'px'
-        } else if (node.offsetWidth >= node.offsetHeight) {
-            node.style.width = contentWidth + 'px'
+        node.loading = 'lazy'
+        node.onload = () => {
+            resizeMedia(node)
         }
     })
 
     document.querySelectorAll('.nx-container .nx-content video').forEach((node) => {
-        if (node.offsetWidth < node.offsetHeight) {
-            node.style.height = contentWidth + 'px'
-
-            if (isNotEmpty(node.width) && isNotEmpty(node.height)) {
-                node.style.width = ((contentWidth * node.width) / node.height) + 'px'
-            }
-        } else if (node.offsetWidth >= node.offsetHeight) {
-            node.style.width = contentWidth + 'px'
-
-            if (isNotEmpty(node.width) && isNotEmpty(node.height)) {
-                node.style.height = ((contentWidth * node.height) / node.width) + 'px'
-            }
+        node.loading = 'lazy'
+        node.onload = () => {
+            resizeMedia(node)
         }
+    })
+}
+
+const resizeElements = () => {
+    document.querySelectorAll('.nx-container .nx-content img').forEach((node) => {
+        resizeMedia(node)
+    })
+
+    document.querySelectorAll('.nx-container .nx-content video').forEach((node) => {
+        resizeMedia(node)
     })
 }
 
@@ -92,12 +126,6 @@ const refreshPageWithoutLoading = (newUrl, stateAction = null) => {
         // Replace Document Element(s)
         document.title = newTitle
         document.querySelector('.nx-container').innerHTML = newContainer
-
-        // Replace Elements
-        replaceElements()
-
-        // Resize Elements
-        resizeElements()
 
         // Set History State
         switch (stateAction) {
@@ -123,22 +151,13 @@ const refreshPageWithoutLoading = (newUrl, stateAction = null) => {
                 page_location: window.location.href
             })
         }
-
-        if (isNotEmpty(window._nx.disqusShortname)
-            && document.getElementById('disqus_thread')
-        ) {
-            if (isEmpty(window.DISQUS)) {
-                asyncLoad('//' + window._nx.disqusShortname + '.disqus.com/embed.js')
-            } else {
-                window.DISQUS.reset({
-                    reload: true
-                })
-            }
-        }
     }).catch((error) => {
+        log(error)
 
         // Replace Document Element(s)
+        document.title = oldTitle
         document.querySelector('.nx-container').innerHTML = oldContainer
+    }).finally(() => {
 
         // Replace Elements
         replaceElements()
