@@ -139,8 +139,8 @@ function releaseCopyAll() {
         .pipe(gulp.dest('dist'))
 }
 
-function releaseReplaceIndex() {
-    return gulp.src('dist/views/index.php')
+function releaseReplaceLayout() {
+    return gulp.src('dist/views/layout.php')
         .pipe($.replace('$postfix = time()', '$postfix = ' + postfix))
         .pipe(gulp.dest('dist/views'))
 }
@@ -187,7 +187,7 @@ gulp.task('prepare', gulp.series(
 gulp.task('release', gulp.series(
     setEnv, cleanDist,
     'prepare',
-    releaseCopyAll, releaseReplaceIndex
+    releaseCopyAll, releaseReplaceLayout
 ))
 
 gulp.task('default', gulp.series(
