@@ -87,8 +87,8 @@ const replaceElements = () => {
         node.target = '_blank'
     })
 
-    document.querySelectorAll('.nx-container .nx-content pre').forEach((node) => {
-        hljs.highlightBlock(node)
+    document.querySelectorAll('.nx-container .nx-content pre code').forEach((node) => {
+        hljs.highlightElement(node)
     })
 
     document.querySelectorAll('.nx-container .nx-content p img').forEach((node) => {
