@@ -94,6 +94,22 @@
         margin: 0
         color: #bbb
 
+#nx-loading
+    display: none
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    height: 3px
+    background-color: #ddd
+
+    .nx-progress
+        position: absolute
+        top: 0
+        left: 0
+        bottom: 0
+        background-color: #333
+
 .nx-limiter
     margin: 0 auto
     padding: 25px 40px
@@ -101,12 +117,6 @@
     overflow: hidden
 
 .nx-container
-    .nx-loading
-        padding-top: 25px
-        text-align: center
-        color: #ccc
-        +font-size(4)
-
     .nx-block
         padding: 30px 20px
 

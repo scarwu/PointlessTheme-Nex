@@ -51,3 +51,7 @@ $description = (!isset($container['description']) || '' === $container['descript
         <span>Powered by Pointless</span>
     </a>
 </footer>
+
+<div id="nx-loading">
+    <div class="nx-progress"></div>
+</div>

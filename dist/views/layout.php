@@ -1,5 +1,5 @@
 <?php
-$postfix = 1663307199670;
+$postfix = 1663309926801;
 $lang = $blog['config']['lang'];
 $slogan = $blog['config']['slogan'];
 $footer = $blog['config']['footer'];
@@ -51,3 +51,7 @@ $description = (!isset($container['description']) || '' === $container['descript
         <span>Powered by Pointless</span>
     </a>
 </footer>
+
+<div id="nx-loading">
+    <div class="nx-progress"></div>
+</div>

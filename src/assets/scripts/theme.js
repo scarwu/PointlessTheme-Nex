@@ -1,4 +1,3 @@
-'use strict'
 /**
  * Application Bootstrap
  *
@@ -120,10 +119,15 @@ const refreshPageWithoutLoading = (newUrl, stateAction = null) => {
     let oldTitle = document.title
     let oldContainer = document.querySelector('.nx-container').innerHTML
 
-    // Set Loading
-    document.querySelector('.nx-container').innerHTML = '<div class="nx-loading"><i class="fas fa-circle-notch fa-spin"></i></div>'
+    // Enable Loading Progress
+    document.querySelector('#nx-loading').style.display = 'block'
+    document.querySelector('#nx-loading .nx-progress').style.width = '0%'
 
-    axios.get(newUrl).then((res) => {
+    axios.get(newUrl, {
+        onDownloadProgress: (event) => {
+            document.querySelector('#nx-loading .nx-progress').style.width = Math.round((event.loaded * 100) / event.total) + '%'
+        }
+    }).then((res) => {
         let newDoc = (new DOMParser()).parseFromString(res.data, 'text/html')
         let newTitle = newDoc.title
         let newContainer = newDoc.querySelector('.nx-container').innerHTML
@@ -164,6 +168,10 @@ const refreshPageWithoutLoading = (newUrl, stateAction = null) => {
         document.querySelector('.nx-container').innerHTML = oldContainer
     }).finally(() => {
 
+        // Disable Loading Progress
+        document.querySelector('#nx-loading').style.display = 'none'
+        document.querySelector('#nx-loading .nx-progress').style.width = '0%'
+
         // Replace Elements
         replaceElements()
 
@@ -181,6 +189,13 @@ const refreshPageWithoutLoading = (newUrl, stateAction = null) => {
                     reload: true
                 })
             }
+        }
+
+        if (null !== stateAction) {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
         }
     })
 }
