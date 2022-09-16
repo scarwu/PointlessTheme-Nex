@@ -259,13 +259,6 @@
                     content: '\f105'
 
 .nx-container > .nx-page
-    .nx-cover-image
-        margin: 0 auto 15px auto
-        height: 160px
-        background-position: center center
-        background-size: cover
-        +border-radius(3px)
-
     .nx-more
         text-align: center
         +font-size(2)
@@ -288,6 +281,13 @@
 
             &:hover
                 color: #999
+
+    .nx-cover-image
+        margin: 0 auto 15px auto
+        height: 160px
+        background-position: center center
+        background-size: cover
+        +border-radius(3px)
 
 .nx-container > .nx-article,
 .nx-container > .nx-describe
@@ -419,9 +419,10 @@
     .nx-limiter
         padding: 10px
 
-    .nx-container > .nx-page
-        .nx-cover-image
-            height: 120px
+    // .nx-container > .nx-page,
+    // .nx-container > .nx-article
+    //     .nx-cover-image
+    //         height: 120px
 
     .nx-container
         .nx-block
@@ -474,9 +475,10 @@
     .nx-limiter
         padding: 10px 0
 
-    .nx-container > .nx-page
-        .nx-cover-image
-            height: 80px
+    // .nx-container > .nx-page,
+    // .nx-container > .nx-article
+    //     .nx-cover-image
+    //         height: 160px
 
     .nx-container
         .nx-paginator

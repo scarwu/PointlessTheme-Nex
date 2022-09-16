@@ -36,6 +36,9 @@ $indicator = "{$paging['currentIndex']} / {$paging['totalIndex']}";
                     <?php endif; ?>
                 </div>
             </div>
+            <?php if (true === isset($container['coverImage'])): ?>
+            <div class="nx-cover-image" style="background-image: url('<?=$container['coverImage']?>')"></div>
+            <?php endif; ?>
             <div class="nx-content"><?=$container['content']?></div>
         </article>
     </div>
