@@ -134,15 +134,15 @@
         +font-size(1.8)
 
         h2
-            margin: 30px 0 15px 0
+            margin: 30px 0 10px 0
             +font-size(3)
 
         h3
-            margin: 30px 0 15px 0
+            margin: 30px 0 10px 0
             +font-size(2.4)
 
         h4
-            margin: 30px 0 15px 0
+            margin: 30px 0 10px 0
             +font-size(2)
 
         hr
@@ -160,8 +160,7 @@
             border-bottom: 1px solid #333
 
         p
-            margin-top: 10px
-            margin-bottom: 10px
+            margin-bottom: 20px
 
             code
                 padding: 0 5px
@@ -170,6 +169,9 @@
                 background: #f5f5f5
                 color: #333
                 +border-radius(3px)
+
+        > pre
+            margin-bottom: 20px
 
         pre
             padding: 10px
@@ -184,21 +186,46 @@
                 background: none
 
         blockquote
+            margin-bottom: 20px
             padding-left: 13px
             border-left: 2px solid #ccc
             font-style: italic
             color: #222
 
-        ul, ol, dl
+        > ul,
+        > ol,
+        > dl
             margin-top: 0
             margin-bottom: 20px
 
+        table
+            margin-bottom: 20px
+
+            thead
+                border-bottom: 1px solid #ddd
+
+            th,
+            td
+                padding: 5px 10px
+                border-right: 1px solid #ddd
+
+                &:nth-last-child(1)
+                    border-right: none
+
         img
             width: 100%
+            border: 1px solid #eee
             +border-radius(3px)
 
+            &:hover
+                border: 1px solid #ddd
+
         video
+            border: 1px solid #eee
             +border-radius(3px)
+
+            &:hover
+                border: 1px solid #ddd
 
         th,
         td
