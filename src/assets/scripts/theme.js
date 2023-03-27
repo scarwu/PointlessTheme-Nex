@@ -90,6 +90,16 @@ const replaceElements = () => {
         hljs.highlightElement(node)
     })
 
+    document.querySelectorAll('.nx-container .nx-content table').forEach((node) => {
+        console.log(node)
+        let tablBlock = document.createElement('div')
+
+        tablBlock.classList.add('nx-table-block');
+        tablBlock.innerHTML = node.outerHTML
+
+        node.replaceWith(tablBlock)
+    })
+
     document.querySelectorAll('.nx-container .nx-content p img').forEach((node) => {
         node.loading = 'lazy'
         node.onload = () => {
